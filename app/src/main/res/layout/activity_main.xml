@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+
+
+    <LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="match_parent" android:padding="10dp" android:layout_gravity="center">
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="@android:color/background_dark" android:textStyle="bold" android:textSize="30dp" android:text="Realizar reclamo"/>
+
+    </LinearLayout>
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="30dp" android:text="Selecciona ubicacion"/>
+
+
+    <LinearLayout android:orientation="vertical" android:layout_width="300dp" android:layout_height="wrap_content" android:layout_gravity="center">
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="20dp" android:text="Edificio"/>
+
+        <Spinner android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/spinner1"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="20dp" android:text="Piso"/>
+
+        <Spinner android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/spinner2"/>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="20dp" android:text="Aula/Lugar"/>
+
+        <EditText android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/aula" android:hint="Ingrese aula o lugar" android:inputType="text"/>
+
+    </LinearLayout>
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="30dp" android:text="Selecciona el tipo de reclamo"/>
+
+
+    <LinearLayout android:orientation="vertical" android:layout_width="300dp" android:layout_height="wrap_content" android:layout_gravity="center">
+
+        <Button android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="20dp" android:text="Mantenimiento" android:id="@+id/mantenimientoBoton" android:onClick="guardar" android:backgroundTint="#2B2B2B"/>
+
+        <Button android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="20dp" android:text="Tecnologia" android:id="@+id/tecnologiaBoton" android:onClick="guardar" android:backgroundTint="#0E23AE"/>
+
+        <Button android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="20dp" android:text="Vinculos Sociales" android:id="@+id/vinculosBoton" android:onClick="guardar" android:backgroundTint="#0E23AE"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="20dp" android:text="Ingrese descripcion del reclamo:"/>
+
+        <EditText android:layout_width="match_parent" android:layout_height="match_parent" android:id="@+id/mitexto" android:inputType="text"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout android:orientation="vertical" android:layout_width="400dp" android:layout_height="match_parent" android:layout_gravity="center">
+
+        <Button android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="20dp" android:text="Continuar" android:id="@+id/boton1"  android:onClick="guardarUbicacion"/>
+
+        <ListView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/lista"/>
+
+    </LinearLayout>
+
+</LinearLayout>
