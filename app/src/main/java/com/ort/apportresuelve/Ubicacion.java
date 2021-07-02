@@ -5,6 +5,16 @@ public class Ubicacion {
     private String piso;
     private String aula;
     private  String descripcion;
+    private String tipoDeReclamo;
+
+    public String getTipoDeReclamo() {
+        return tipoDeReclamo;
+    }
+
+    public void setTipoDeReclamo(String tipoDeReclamo) {
+        this.tipoDeReclamo = tipoDeReclamo;
+    }
+
     public Ubicacion(){
 
     }
