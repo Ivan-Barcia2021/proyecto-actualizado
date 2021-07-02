@@ -28,17 +28,19 @@ public class reclamosRecibidos extends AppCompatActivity {
         ValueEventListener userlistener= new ValueEventListener () {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot d: snapshot.getChildren ()){
-                    tecnologia t=d.getValue (tecnologia.class);
-                    ArrayList<tecnologia> listareclamos= new ArrayList<> ();
-                    listareclamos.add (t);
-                    Log.d("Aula", t.getAula());
-                    Log.d("Descripcion", t.getDescripcion());
-                    Log.d("Piso", t.getPiso());
-                    Log.d("Edificio", t.getEdificio());
+                ArrayList<tecnologia> listareclamos = new ArrayList<>();
+                //for (DataSnapshot d : snapshot.getChildren()) {
+                    DataSnapshot u = snapshot.child("Ubicacion");
+                    for (DataSnapshot d2 : u.getChildren()) {
+                        tecnologia t = d2.getValue(tecnologia.class);
+                        listareclamos.add(t);
+                        Log.d("Aula", t.getAula());
+                        Log.d("Descripcion", t.getDescripcion());
+                        Log.d("Piso", t.getPiso());
+                        Log.d("Edificio", t.getEdificio());
+                    }
                 }
-            }
-
+            //}
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 

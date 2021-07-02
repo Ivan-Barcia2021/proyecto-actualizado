@@ -32,14 +32,16 @@ public class misreclamos extends AppCompatActivity {
         ValueEventListener userListener= new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    Ubicacion miubicacion= dataSnapshot.getValue(Ubicacion.class);
-                    ArrayList<Ubicacion> nuestrasubicaciones= new ArrayList<>();
-                    nuestrasubicaciones.add(miubicacion);
-                    Log.d("Aula", miubicacion.getAula());
-                    Log.d("Descripcion", miubicacion.getDescripcion());
-                    Log.d("Piso", miubicacion.getPiso());
-                    Log.d("Edificio", miubicacion.getEdificio());
+                ArrayList<Ubicacion> nuestrasubicaciones = new ArrayList<>();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    for (DataSnapshot d2 : dataSnapshot.getChildren()) {
+                        Ubicacion miubicacion = d2.getValue(Ubicacion.class);
+                        nuestrasubicaciones.add(miubicacion);
+                        Log.d("Aula", miubicacion.getAula());
+                        Log.d("Descripcion", miubicacion.getDescripcion());
+                        Log.d("Piso", miubicacion.getPiso());
+                        Log.d("Edificio", miubicacion.getEdificio());
+                    }
                 }
             }
 
