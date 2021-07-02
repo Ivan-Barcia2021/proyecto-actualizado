@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 
 import com.google.firebase.database.DatabaseReference;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference mirootReference;
     EditText mitexto;
     DatabaseReference bdd;
+    String tipoDeReclamoSeleccionado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,11 +93,13 @@ public class MainActivity extends AppCompatActivity {
                 edificio = textoSeleccionado;
                 piso = textoSeleccionado2;
                 descripcion = mitexto.getText ().toString ();
+
                 Map<String, Object> registro = new HashMap<> ();
                 registro.put ("edificio", edificio);
                 registro.put ("piso", piso);
                 registro.put ("aula", aulaIngresada);
                 registro.put ("descripcion", descripcion);
+                registro.put("tipoDeReclamo", tipoDeReclamoSeleccionado);
                 mirootReference.child ("Ubicacion").push ().setValue (registro);
 
 
@@ -111,6 +115,31 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.mantenimientoBoton:
+                if (checked)
+                    // selecciono mantenimiento
+                    tipoDeReclamoSeleccionado="Mantenimiento";
+                    break;
+            case R.id.tecnologiaBoton:
+                if (checked)
+                    // selecciono tecnologia
+                    tipoDeReclamoSeleccionado="Tecnologia";
+                    break;
+            case R.id.vinculosBoton:
+                if (checked)
+                    // selecciono vinculos
+                    tipoDeReclamoSeleccionado="Vinculos";
+                    break;
+        }
+    }
+
+/*
     public void guardar(View v) {
         String edificio;
         String aulaIngresada;
@@ -146,4 +175,6 @@ public class MainActivity extends AppCompatActivity {
             bdd.child ("tecnologia").push ().setValue (registroUbicacion);
         }
 
-    }}
+    }
+ */
+    }

@@ -33,18 +33,33 @@
 
     <LinearLayout android:orientation="vertical" android:layout_width="300dp" android:layout_height="wrap_content" android:layout_gravity="center">
 
-        <Button android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="20dp" android:text="Mantenimiento" android:id="@+id/mantenimientoBoton" android:onClick="guardar" android:backgroundTint="#2B2B2B"/>
-
-        <Button android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="20dp" android:text="Tecnologia" android:id="@+id/tecnologiaBoton" android:onClick="guardar" android:backgroundTint="#2B2B2B"/>
-
-        <Button android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="20dp" android:text="Vinculos Sociales" android:id="@+id/vinculosBoton" android:onClick="guardar" android:backgroundTint="#2B2B2B"/>
-
-        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="20dp" android:text="Ingrese descripcion del reclamo:"/>
-
-        <EditText android:layout_width="match_parent" android:layout_height="match_parent" android:id="@+id/mitexto" android:inputType="text"/>
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RadioButton android:id="@+id/mantenimientoBoton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MANTENIMIENTO"
+                android:onClick="onRadioButtonClicked"/>
+            <RadioButton android:id="@+id/tecnologiaBoton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TECNOLOGIA"
+                android:onClick="onRadioButtonClicked"/>
+            <RadioButton android:id="@+id/vinculosBoton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="VINCULOS SOCIALES"
+                android:onClick="onRadioButtonClicked"/>
+        </RadioGroup>
 
     </LinearLayout>
 
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="30dp" android:text="Ingrese descripcion del reclamo:"/>
+
+    <EditText android:layout_width="match_parent" android:layout_height="match_parent" android:id="@+id/mitexto" android:inputType="text"/>
 
     <LinearLayout android:orientation="vertical" android:layout_width="400dp" android:layout_height="match_parent" android:layout_gravity="center">
 
