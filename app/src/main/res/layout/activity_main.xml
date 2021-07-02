@@ -65,8 +65,6 @@
 
         <Button android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="20dp" android:text="Continuar" android:id="@+id/boton1"  android:onClick="guardarUbicacion"/>
 
-        <ListView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/lista"/>
-
     </LinearLayout>
 
 </LinearLayout>

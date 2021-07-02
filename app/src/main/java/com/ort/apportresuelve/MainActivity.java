@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
                 paquete.putString ("edificio", edificio);
                 paquete.putString ("aulaIngresada", aulaIngresada);
                 paquete.putString ("descripcion", descripcion);
+                paquete.putString("tipoDeReclamo", tipoDeReclamoSeleccionado);
                 Intent myIntent = new Intent (v.getContext (), misreclamos.class);
                 startActivity (myIntent);
             }
