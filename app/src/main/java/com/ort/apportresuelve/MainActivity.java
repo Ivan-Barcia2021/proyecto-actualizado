@@ -1,9 +1,11 @@
 package com.ort.apportresuelve;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -11,8 +13,12 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,7 +27,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
     Button botonpresionado;
 
-
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     ArrayList<String> DatosLista;
     ArrayList<String> DatosLista2;
     ArrayAdapter<String> Adaptador;
@@ -94,14 +100,25 @@ public class MainActivity extends AppCompatActivity {
                 piso = textoSeleccionado2;
                 descripcion = mitexto.getText ().toString ();
 
+
                 Map<String, Object> registro = new HashMap<> ();
                 registro.put ("edificio", edificio);
                 registro.put ("piso", piso);
                 registro.put ("aula", aulaIngresada);
                 registro.put ("descripcion", descripcion);
                 registro.put("tipoDeReclamo", tipoDeReclamoSeleccionado);
-                mirootReference.child ("Ubicacion").push ().setValue (registro);
+                db.collection ("Reclamos").add(registro).addOnSuccessListener (new OnSuccessListener<DocumentReference> () {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+Log.d("Reclamos", "se creo el reclamo" + documentReference.getId ());
+                    }
 
+                }).addOnFailureListener (new OnFailureListener () {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("Reclamos", "NO se creo el reclamo"+ e);
+                    }
+                });
 
                 Bundle paquete;
                 paquete = new Bundle ();
