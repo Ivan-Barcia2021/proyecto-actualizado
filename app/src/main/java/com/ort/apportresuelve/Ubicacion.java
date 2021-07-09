@@ -1,10 +1,11 @@
 package com.ort.apportresuelve;
 
 public class Ubicacion {
+    private  String descripcion;
     private String edificio;
     private String piso;
     private String aula;
-    private  String descripcion;
+
     private String tipoDeReclamo;
 
     public String getTipoDeReclamo() {
@@ -44,8 +45,10 @@ public class Ubicacion {
     }
     public  String getDescripcion(){return descripcion;}
     public void setDescripcion(String descripcion){this.descripcion=descripcion;}
-    @Override
+  /*  @Override
     public String toString() {
         return edificio;
     }
+
+   */
 }

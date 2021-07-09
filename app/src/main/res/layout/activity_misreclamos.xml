@@ -27,9 +27,23 @@
         android:onClick="pasar"
         android:text="Reclamos recibidos"
         />
-
+<Button
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:onClick="mostrar"
+    android:text="ver mis reclamos"
+    />
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:id="@+id/mlista"
+
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/seleccion"
+
+        />
 
 </LinearLayout>

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,18 +37,17 @@ public class MainActivity extends AppCompatActivity {
     String textoSeleccionado2;
     EditText aula;
     Button botonContinuar;
-    FirebaseDatabase database = FirebaseDatabase.getInstance ();
-    DatabaseReference mirootReference;
+
     EditText mitexto;
-    DatabaseReference bdd;
+
     String tipoDeReclamoSeleccionado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_main);
-        bdd = FirebaseDatabase.getInstance ().getReference ();
-        mirootReference = FirebaseDatabase.getInstance ().getReference ();
+
+
         botonContinuar = findViewById (R.id.boton1);
         aula = findViewById (R.id.aula);
         mitexto = findViewById (R.id.mitexto);
@@ -61,12 +61,23 @@ public class MainActivity extends AppCompatActivity {
 
         Spinner spnOpciones = (Spinner) findViewById (R.id.spinner1);
         spnOpciones.setAdapter (Adaptador);
+        spnOpciones.setOnItemSelectedListener (new AdapterView.OnItemSelectedListener () {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                textoSeleccionado = spnOpciones.getItemAtPosition (position).toString ();
+            }
 
-        int Posicion;
-        Posicion = spnOpciones.getSelectedItemPosition ();
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 
-        textoSeleccionado = spnOpciones.getItemAtPosition (Posicion).toString ();
+
+
+
+
 
         DatosLista2 = new ArrayList<> ();
         DatosLista2.add ("PB");
@@ -80,12 +91,21 @@ public class MainActivity extends AppCompatActivity {
 
         Spinner spinner2 = (Spinner) findViewById (R.id.spinner2);
         spinner2.setAdapter (Adaptador2);
+spinner2.setOnItemSelectedListener (new AdapterView.OnItemSelectedListener () {
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        textoSeleccionado2 = spinner2.getItemAtPosition (position).toString ();
+    }
 
-        int posicion2;
-        posicion2 = spinner2.getSelectedItemPosition ();
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+});
 
 
-        textoSeleccionado2 = spinner2.getItemAtPosition (posicion2).toString ();
+
+
 
         botonContinuar.setOnClickListener (new View.OnClickListener () {
             @Override
@@ -99,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                 edificio = textoSeleccionado;
                 piso = textoSeleccionado2;
                 descripcion = mitexto.getText ().toString ();
-
+//revisar piso y edificio
 
                 Map<String, Object> registro = new HashMap<> ();
                 registro.put ("edificio", edificio);
