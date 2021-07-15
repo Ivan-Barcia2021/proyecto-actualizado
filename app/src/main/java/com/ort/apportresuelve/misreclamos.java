@@ -12,11 +12,16 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -31,8 +36,26 @@ public class misreclamos extends AppCompatActivity {
         Intent intent= new Intent (v.getContext (), reclamosRecibidos.class);
         startActivity (intent);
     }
-
     public void mostrar(View vista){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        ArrayList<Ubicacion> nuestrasubicaciones = new ArrayList<>();
+        db.collection("Reclamos")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                nuestrasubicaciones.add(document.toObject(Ubicacion.class));
+                            }
+                        } else {
+                            //MUESTRO ERROR
+                        }
+                    }
+                });
+    }
+
+    /*public void mostrar(View vista){
         ArrayList<Ubicacion> nuestrasubicaciones = new ArrayList<>();
 
         ValueEventListener userListener= new ValueEventListener() {
@@ -73,5 +96,5 @@ public class misreclamos extends AppCompatActivity {
             }
         });
 
-    }
+    }*/
 }
