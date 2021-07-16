@@ -25,6 +25,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
+@SuppressWarnings("ALL")
 public class misreclamos extends AppCompatActivity {
 
     @Override
@@ -36,9 +37,13 @@ public class misreclamos extends AppCompatActivity {
         Intent intent= new Intent (v.getContext (), reclamosRecibidos.class);
         startActivity (intent);
     }
-    public void mostrar(View vista){
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+   // public void mostrar(View vista){
+      /*  FirebaseFirestore db = FirebaseFirestore.getInstance();
+
         ArrayList<Ubicacion> nuestrasubicaciones = new ArrayList<>();
+
+
+
         db.collection("Reclamos")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -46,6 +51,7 @@ public class misreclamos extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
+
                                 nuestrasubicaciones.add(document.toObject(Ubicacion.class));
                             }
                         } else {
@@ -53,10 +59,15 @@ public class misreclamos extends AppCompatActivity {
                         }
                     }
                 });
+        //for recorriendo nuestrasubicaciones para obtener todas las ubicaciones y mostrarlas en la list view con sus atributos.
+        TextView miseleccion =findViewById (R.id.seleccion);
+        ListView lista=findViewById (R.id.mlista);
+        ArrayAdapter<Ubicacion> ubis= new ArrayAdapter<Ubicacion> (this, android.R.layout.simple_list_item_1 , nuestrasubicaciones);
+       lista.setAdapter (ubis);
     }
-
-    /*public void mostrar(View vista){
-        ArrayList<Ubicacion> nuestrasubicaciones = new ArrayList<>();
+*/
+    public void mostrar(View vista){
+        ArrayList<Ubicacion> nuestrasubicacione = new ArrayList<>();
 
         ValueEventListener userListener= new ValueEventListener() {
 
@@ -71,7 +82,7 @@ public class misreclamos extends AppCompatActivity {
                         Log.d("Descripcion", miubicacion.getDescripcion());
                         Log.d("Piso", miubicacion.getPiso());
                         Log.d("Edificio", miubicacion.getEdificio());
-                        nuestrasubicaciones.add(miubicacion);
+                        nuestrasubicacione.add(miubicacion);
                     }
                 }
             }
@@ -83,18 +94,20 @@ public class misreclamos extends AppCompatActivity {
         };
 
         TextView seleccion=findViewById (R.id.seleccion);
+        TextView seleccion2=findViewById (R.id.seleccion2);
         DatabaseReference mibdd= FirebaseDatabase.getInstance().getReference();
         mibdd.addValueEventListener(userListener);
-        ArrayAdapter<Ubicacion> adaptador= new ArrayAdapter<> (this, android.R.layout.simple_list_item_1 , nuestrasubicaciones);
+        ArrayAdapter<Ubicacion> adaptador= new ArrayAdapter<Ubicacion> (this, android.R.layout.simple_list_item_1 , nuestrasubicacione);
         ListView milista=findViewById (R.id.mlista);
         milista.setAdapter (adaptador);
-        milista.setOnItemClickListener (new AdapterView.OnItemClickListener () {
+       milista.setOnItemClickListener (new AdapterView.OnItemClickListener () {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 seleccion.setText (parent.getItemAtPosition (position).toString ());
+
                 //los reclamos hechos pueden verse pero hay que apretar muchas veces el boton y se ven mal, hay que corregirlo.
             }
         });
 
-    }*/
+    }
 }

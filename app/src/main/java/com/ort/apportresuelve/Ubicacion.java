@@ -24,7 +24,7 @@ public class Ubicacion {
         return edificio;
     }
 
-    public void setEdificio(String edificio) {
+    private void setEdificio(String edificio) {
         this.edificio = edificio;
     }
 
@@ -32,7 +32,7 @@ public class Ubicacion {
         return piso;
     }
 
-    public void setPiso(String piso) {
+    private void setPiso(String piso) {
         this.piso = piso;
     }
 
@@ -40,15 +40,17 @@ public class Ubicacion {
         return aula;
     }
 
-    public void setAula(String aula) {
+    private void setAula(String aula) {
         this.aula = aula;
     }
-    public  String getDescripcion(){return descripcion;}
-    public void setDescripcion(String descripcion){this.descripcion=descripcion;}
-  /*  @Override
+    public    String getDescripcion(){return descripcion;}
+    private void setDescripcion(String descripcion){this.descripcion=descripcion;}
+    @Override
     public String toString() {
-        return edificio;
+        return descripcion;
+
     }
 
-   */
+
+
 }
