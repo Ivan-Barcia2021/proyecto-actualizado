@@ -2,70 +2,64 @@ package com.ort.apportresuelve;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 //import com.google.firebase.firestore.FirebaseFirestore;
+import java.util.ArrayList;
 import java.util.List;
-/*
-    public class AdaptadorUbicacion extends RecyclerView.Adapter<AdaptadorUbicacion.ViewHolder> {
 
-        private List<Ubicacion> ubicacions;
-        private Context context;
-        private FirebaseFirestore firestoreDB;
+class AdaptadorUbicacion  extends BaseAdapter {
 
-        public AdaptadorUbicacion(List<Ubicacion> ubicaciones, Context context, FirebaseFirestore firestoreDB) {
-            this.ubicacions = ubicaciones;
-            this.context = context;
-            this.firestoreDB = firestoreDB;
+    ArrayList<Ubicacion> reclamosUB;
+    Context context;
+
+    AdaptadorUbicacion(Context context, ArrayList<Ubicacion> reclamosUB) {
+        this.reclamosUB = reclamosUB;
+        this.context = context;
+    }
+
+    @Override
+    public int getCount() {
+        return reclamosUB.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return reclamosUB.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(int position, View view, ViewGroup viewGroup) {
+
+        if (view == null) {
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = inflater.inflate(R.layout.list_reclamos, viewGroup, false);
         }
 
-        @Override
-        public AdaptadorUbicacion.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_reclamos, parent, false);
+        TextView tipoReclamoAmostrar = (TextView) view.findViewById(R.id.tipodeReclamoAmostrar);
+        TextView descAmostrar = (TextView) view.findViewById(R.id.descripcionAmostrar);
+        TextView edificioAmostrar = (TextView) view.findViewById(R.id.edificioAmostrar);
+        TextView pisoAmostrar = (TextView) view.findViewById(R.id.pisoAmostrar);
+        TextView aulaAmostrar = (TextView) view.findViewById(R.id.aulaAmostrar);
 
-            return new AdaptadorUbicacion.ViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(AdaptadorUbicacion.ViewHolder holder, int position) {
-            final int itemPosition = position;
-            final Ubicacion ubi = Ubicacion.get(itemPosition);
-            // progressBar.setVisibility(View.GONE);
-            holder.nombre.setText(ubi.getEdificio());
-            holder.division.setText(ubi.getPiso());
-            holder.itemView.setOnClickListener(v ->
-            {
-                Intent intent = new Intent(context, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("edificio", ubi.getEdificio());
-                intent.putExtra("piso", ubi.getPiso());
-                intent.putExtra("aula", ubi.getAula());
-                intent.putExtra("descripcion", ubi.getDescripcion());
-                intent.putExtra("tipoDeReclamo", ubi.getTipoDeReclamo());
-
-                context.startActivity(intent);
-            });
-        }
-
-        @Override
-        public int getItemCount() {
-            return alumnos.size();
-        }
-
-        public class ViewHolder extends RecyclerView.ViewHolder {
-
-            @BindView(R.id.nombre)
-            TextView nombre;
-            @BindView(R.id.division)
-            TextView division;
-            @BindView(R.id.calificacion)
-            TextView calificacion;
-
-        }
-
+        Ubicacion p = reclamosUB.get(position);
+        tipoReclamoAmostrar.setText(p.getTipoDeReclamo());
+        descAmostrar.setText(p.getDescripcion());
+        edificioAmostrar.setText(p.getEdificio());
+        pisoAmostrar.setText(p.getPiso());
+        aulaAmostrar.setText(p.getAula());
+        Log.d("TraerReclamo","CHAU");
+        return view;
 
     }
-    */
+}

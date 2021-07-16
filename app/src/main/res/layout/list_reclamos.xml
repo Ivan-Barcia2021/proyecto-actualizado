@@ -20,20 +20,44 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/nombreReclamador"
+                android:id="@+id/tipodeReclamoAmostrar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed"
                 android:textSize="40dp"
-                tools:text="Ezequiel Fernandez" />
+                tools:text="Tipo de reclamo" />
 
             <TextView
-                android:id="@+id/fecha"
+                android:id="@+id/descripcionAmostrar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="40dp"
+                tools:text="Descripcion" />
+
+            <TextView
+                android:id="@+id/edificioAmostrar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed"
                 android:textSize="30dp"
-                tools:text="22/5" />
+                tools:text="edificio" />
+
+            <TextView
+                android:id="@+id/pisoAmostrar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="30dp"
+                tools:text="piso" />
+
+            <TextView
+                android:id="@+id/aulaAmostrar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="30dp"
+                tools:text="aula" />
 
         </LinearLayout>
 

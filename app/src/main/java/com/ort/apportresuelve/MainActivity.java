@@ -130,7 +130,7 @@ spinner2.setOnItemSelectedListener (new AdapterView.OnItemSelectedListener () {
                 db.collection ("Reclamos").add(registro).addOnSuccessListener (new OnSuccessListener<DocumentReference> () {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-Log.d("Reclamos", "se creo el reclamo" + documentReference.getId ());
+                        Log.d("Reclamos", "se creo el reclamo" + documentReference.getId ());
                     }
 
                 }).addOnFailureListener (new OnFailureListener () {
