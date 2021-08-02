@@ -20,10 +20,12 @@ class AdaptadorUbicacion  extends BaseAdapter {
 
     ArrayList<Ubicacion> reclamosUB;
     OnCompleteListener<QuerySnapshot> context;
+private Context micontexto;
 
-    AdaptadorUbicacion(OnCompleteListener<QuerySnapshot> context, ArrayList<Ubicacion> reclamosUB) {
+    AdaptadorUbicacion(OnCompleteListener<QuerySnapshot> context, ArrayList<Ubicacion> reclamosUB, Context contextoausar) {
         this.reclamosUB = reclamosUB;
         this.context = context;
+        micontexto=contextoausar;
     }
 
     @Override
@@ -47,7 +49,7 @@ class AdaptadorUbicacion  extends BaseAdapter {
         if (view == null) {
             LayoutInflater inflater;
 
-             inflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+             inflater=(LayoutInflater)micontexto.getSystemService (Context.LAYOUT_INFLATER_SERVICE);
             //LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.list_reclamos, viewGroup, false);
         }
