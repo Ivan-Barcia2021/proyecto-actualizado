@@ -10,15 +10,18 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 //import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.ArrayList;
 import java.util.List;
 
 class AdaptadorUbicacion  extends BaseAdapter {
 
     ArrayList<Ubicacion> reclamosUB;
-    Context context;
+    OnCompleteListener<QuerySnapshot> context;
 
-    AdaptadorUbicacion(Context context, ArrayList<Ubicacion> reclamosUB) {
+    AdaptadorUbicacion(OnCompleteListener<QuerySnapshot> context, ArrayList<Ubicacion> reclamosUB) {
         this.reclamosUB = reclamosUB;
         this.context = context;
     }
@@ -42,7 +45,10 @@ class AdaptadorUbicacion  extends BaseAdapter {
     public View getView(int position, View view, ViewGroup viewGroup) {
 
         if (view == null) {
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater inflater;
+
+             inflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            //LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.list_reclamos, viewGroup, false);
         }
 
@@ -62,4 +68,6 @@ class AdaptadorUbicacion  extends BaseAdapter {
         return view;
 
     }
+
+
 }
