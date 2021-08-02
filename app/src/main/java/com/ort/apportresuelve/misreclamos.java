@@ -61,9 +61,9 @@ public class misreclamos extends AppCompatActivity {
                             //for recorriendo nuestrasubicaciones para obtener todas las ubicaciones y mostrarlas en la list view con sus atributos.
                             TextView miseleccion =findViewById (R.id.seleccion);
                             ListView lista=findViewById (R.id.mlista);
-                            OnCompleteListener<QuerySnapshot> c = null;
+
                             Context contexto = null;
-                            AdaptadorUbicacion ubis= new AdaptadorUbicacion( c, nuestrasubicaciones, contexto); //(this, android.R.layout.simple_list_item_1 , nuestrasubicaciones);
+                            AdaptadorUbicacion ubis= new AdaptadorUbicacion( this,nuestrasubicaciones, contexto); //(this, android.R.layout.simple_list_item_1 , nuestrasubicaciones);
                             lista.setAdapter (ubis);
                         } else {
                             //MUESTRO ERROR
