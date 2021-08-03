@@ -177,6 +177,10 @@ spinner2.setOnItemSelectedListener (new AdapterView.OnItemSelectedListener () {
         }
     }
 
+    public void login(View v){
+        Intent loguear= new Intent (v.getContext (), login.class);
+        startActivity (loguear);
+    }
 /*
     public void guardar(View v) {
         String edificio;

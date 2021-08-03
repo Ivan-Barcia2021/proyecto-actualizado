@@ -31,6 +31,24 @@ public class login extends AppCompatActivity {
     }
 
     public void avanzar(View v){
+        FirebaseFirestore db = null;
+        db.collection("cities")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+        Intent intent= new Intent (v.getContext (), MainActivity.class);
+        startActivity (intent);
+
         //debo traer el dni y la contraseña, compararlos con el ingreso y si es correcto, loguear al usuario.
      /*   FirebaseFirestore db = null;
         ArrayList<usuario> nuestrosusuarios= new ArrayList<> ();

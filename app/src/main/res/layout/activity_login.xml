@@ -1,25 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_height="match_parent" android:layout_width="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:hint="Ingrese nombre de usuario"
         android:id="@+id/usuario"
-        ></EditText>
-    <EditText
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/contraseña"
-        android:hint="Ingrese contraseña">
+        android:layout_height="wrap_content"
 
-    </EditText>
-    <Button
+        android:hint="Ingrese nombre de usuario"
+        />
+    <EditText
+        android:id="@+id/contraseña"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/pasar"
-        android:onClick="avanzar"
-        ></Button>
-</LinearLayout>
+        android:layout_height="wrap_content"
+android:layout_below="@+id/usuario"
+
+        android:hint="Ingrese contraseña"
+        />
+    <Button
+        android:id="@+id/boton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+android:textSize="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:onClick="login"
+        android:text="login" />
+</RelativeLayout>
