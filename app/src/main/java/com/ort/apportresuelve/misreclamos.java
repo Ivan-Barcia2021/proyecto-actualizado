@@ -63,7 +63,7 @@ public class misreclamos extends AppCompatActivity {
                             ListView lista=findViewById (R.id.mlista);
 
                             Context contexto = null;
-                            AdaptadorUbicacion ubis= new AdaptadorUbicacion( this,nuestrasubicaciones, contexto); //(this, android.R.layout.simple_list_item_1 , nuestrasubicaciones);
+                            AdaptadorUbicacion ubis= new AdaptadorUbicacion( misreclamos.this,nuestrasubicaciones); //(this, android.R.layout.simple_list_item_1 , nuestrasubicaciones);
                             lista.setAdapter (ubis);
                         } else {
                             //MUESTRO ERROR

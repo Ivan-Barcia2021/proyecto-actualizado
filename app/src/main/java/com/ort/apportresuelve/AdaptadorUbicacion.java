@@ -22,10 +22,10 @@ class AdaptadorUbicacion  extends BaseAdapter {
     OnCompleteListener<QuerySnapshot> context;
 private Context micontexto;
 
-    AdaptadorUbicacion(OnCompleteListener<QuerySnapshot> context, ArrayList<Ubicacion> reclamosUB, Context contextoausar) {
+    AdaptadorUbicacion(Context context, ArrayList<Ubicacion> reclamosUB) {
         this.reclamosUB = reclamosUB;
-        this.context = context;
-        micontexto=contextoausar;
+        //this.context = context;
+        this.micontexto=context;
     }
 
     @Override
