@@ -31,7 +31,8 @@ public class login extends AppCompatActivity {
     }
 
     public void avanzar(View v){
-        FirebaseFirestore db = null;
+        //debo traer el dni y la contraseña, compararlos con el ingreso y si es correcto, loguear al usuario.
+     /*   FirebaseFirestore db = null;
         ArrayList<usuario> nuestrosusuarios= new ArrayList<> ();
         Task<QuerySnapshot> Usuarios=db.collection ("Usuarios").get ().addOnCompleteListener (new OnCompleteListener<QuerySnapshot> () {
             @Override
@@ -47,6 +48,8 @@ public class login extends AppCompatActivity {
                 else {
                     Log.d(TAG, "Error getting documents: ", task.getException());
                 }
+
+
         }
 
 
@@ -55,4 +58,6 @@ public class login extends AppCompatActivity {
     });
       Intent intent= new Intent (v.getContext (), MainActivity.class);
       startActivity (intent);
+
+      */
 }}

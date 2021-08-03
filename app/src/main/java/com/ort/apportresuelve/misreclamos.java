@@ -113,7 +113,7 @@ public class misreclamos extends AppCompatActivity {
                 seleccion.setText (parent.getItemAtPosition (position).toString ());
                 Log.d("EstoyTrayendo",seleccion.toString());
 
-                //los reclamos hechos pueden verse pero hay que apretar muchas veces el boton y se ven mal, hay que corregirlo.
+
             }
         });
 
