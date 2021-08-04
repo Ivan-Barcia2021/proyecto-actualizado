@@ -40,7 +40,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void avanzar(View v){
-     /*  FirebaseFirestore db = null;
+
+
+    /*    ArrayList<usuario> nuestrosusuarios= new ArrayList<> ();
+        EditText contraseña=findViewById (R.id.contraseña);
+        EditText usuario=findViewById (R.id.usuario);
+        String contraseñaingresada=contraseña.toString ();
+        String usuarioingresado=usuario.toString ();
+
+       FirebaseFirestore db = null;
         db.collection("Usuarios")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot> () {
@@ -48,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                nuestrosusuarios.add (document.toObject (usuario.class));
                             }
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
