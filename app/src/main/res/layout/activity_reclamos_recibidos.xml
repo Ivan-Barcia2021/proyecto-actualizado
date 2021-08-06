@@ -21,7 +21,7 @@
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tituloRRecibidos"
-        android:onClick="mostrar"
+        android:onClick="pasar"
         android:text="Mis reclamos"
         app:backgroundTint="#2196F3"
         app:strokeColor="#000000" />
@@ -38,7 +38,7 @@
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="550dp"
         android:id="@+id/mlista"
         android:layout_below="@+id/Recibidos"
         />

@@ -1,43 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<LinearLayout android:layout_height="match_parent"
+<RelativeLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_marginLeft="20dp"
-    android:layout_marginRight="20dp"
+    android:padding="10dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ImageView
+        android:id="@+id/logoLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:src="@drawable/ic_launcher_background"
         />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="Ingrese nombre de usuario:"
+        android:layout_marginTop="80dp"
+        android:layout_below="@+id/logoLogin"
+        />
 
     <EditText
         android:id="@+id/usuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:hint="Ingrese nombre de usuario"
+        android:layout_below="@+id/logoLogin"
+        android:hint="Nombre"
         />
+
+    <TextView
+        android:id="@+id/textoIngresoContra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="Ingrese nombre de usuario:"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/usuario"
+        />
+
     <EditText
         android:id="@+id/contraseña"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/usuario"
+        android:layout_below="@+id/textoIngresoContra"
         android:inputType="textPassword"
-        android:hint="Ingrese contraseña"
+        android:hint="Contraseña"
         />
     <Button
         android:id="@+id/boton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:textSize="20dp"
+        android:layout_below="@+id/contraseña"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:onClick="avanzar"
         android:text="login" />
-</LinearLayout>
+</RelativeLayout>

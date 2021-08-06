@@ -3,6 +3,7 @@ package com.ort.apportresuelve;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,6 +24,12 @@ public class reclamosRecibidos extends AppCompatActivity {
         setContentView (R.layout.activity_reclamos_recibidos);
         mostrar ();
     }
+
+    public void pasar(View v){
+        Intent intent= new Intent (v.getContext (), misreclamos.class);
+        startActivity (intent);
+    }
+
     void mostrar(){
         DatabaseReference bdd= FirebaseDatabase.getInstance ().getReference ();
 

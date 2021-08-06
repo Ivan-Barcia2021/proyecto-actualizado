@@ -37,12 +37,13 @@ public class misreclamos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_misreclamos);
+        mostrar();
     }
     public void pasar(View v){
         Intent intent= new Intent (v.getContext (), reclamosRecibidos.class);
         startActivity (intent);
     }
-   public void mostrar(View vista){
+   public void mostrar(){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         ArrayList<Ubicacion> nuestrasubicaciones = new ArrayList<>();

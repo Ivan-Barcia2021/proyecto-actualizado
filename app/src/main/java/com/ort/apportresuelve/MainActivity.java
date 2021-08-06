@@ -3,8 +3,10 @@ package com.ort.apportresuelve;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -32,11 +35,16 @@ import java.util.Map;
 import static android.content.ContentValues.TAG;
 
 public class MainActivity extends AppCompatActivity {
+
+    EditText nombreUsuario;
+    EditText contraseñaUsuario;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_main);
-
+        nombreUsuario=findViewById(R.id.usuario);
+        contraseñaUsuario=findViewById(R.id.contraseña);
     }
 
     public void avanzar(View v){
@@ -63,8 +71,36 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });*/
-        Intent intent= new Intent (v.getContext (), misreclamos.class);
-        startActivity (intent);
+        if(TextUtils.isEmpty(nombreUsuario.getText())){
+
+            Context context = getApplicationContext();
+            CharSequence text = "Completa el nombre de usuario valido";
+            int duration = Toast.LENGTH_LONG;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+
+            nombreUsuario.setError( "Completa el campo con un nombre valido" );
+
+        }else{
+
+            if(TextUtils.isEmpty(contraseñaUsuario.getText())){
+
+                Context context = getApplicationContext();
+                CharSequence text = "Completa con la contraseña valida";
+                int duration = Toast.LENGTH_LONG;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+
+                contraseñaUsuario.setError( "Completa el campo con una contraseña valida" );
+
+            }else{
+                Intent intent= new Intent (v.getContext (), misreclamos.class);
+                startActivity (intent);
+            }
+        }
+
 
         //debo traer el dni y la contraseña, compararlos con el ingreso y si es correcto, loguear al usuario.
      /*   FirebaseFirestore db = null;
