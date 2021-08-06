@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });*/
-        Intent intent= new Intent (v.getContext (), login.class);
+        Intent intent= new Intent (v.getContext (), misreclamos.class);
         startActivity (intent);
 
         //debo traer el dni y la contraseña, compararlos con el ingreso y si es correcto, loguear al usuario.
