@@ -3,57 +3,126 @@ package com.ort.apportresuelve;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
 public class reclamosRecibidos extends AppCompatActivity {
 
+    //DatabaseReference bdd= FirebaseDatabase.getInstance ().getReference ();
+    FirebaseFirestore bdd = FirebaseFirestore.getInstance();
+    CollectionReference reclamos =bdd.collection("Reclamos");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
-        setContentView (R.layout.activity_reclamos_recibidos);
-        mostrar ();
+        setContentView (R.layout.activity_misreclamos);
+        mostrar();
     }
-
     public void pasar(View v){
         Intent intent= new Intent (v.getContext (), login.class);
         startActivity (intent);
     }
 
-    void mostrar(){
-        DatabaseReference bdd= FirebaseDatabase.getInstance ().getReference ();
 
-        ValueEventListener userlistener= new ValueEventListener () {
+    public void mostrar(){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        ArrayList<Ubicacion> nuestrasubicaciones = new ArrayList<>();
+
+        bdd.collection("Reclamos")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot> () {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+
+                                nuestrasubicaciones.add(document.toObject(Ubicacion.class));
+                            }
+                            Log.d("TraerReclamo","HOLA");
+                            //for recorriendo nuestrasubicaciones para obtener todas las ubicaciones y mostrarlas en la list view con sus atributos.
+                            TextView miseleccion =findViewById (R.id.seleccion);
+                            ListView lista=findViewById (R.id.mlista);
+
+                            Context contexto = null;
+                            AdaptadorUbicacion ubis= new AdaptadorUbicacion( reclamosRecibidos.this,nuestrasubicaciones); //(this, android.R.layout.simple_list_item_1 , nuestrasubicaciones);
+                            lista.setAdapter (ubis);
+                        } else {
+                            //MUESTRO ERROR
+                        }
+                    }
+                });
+
+
+        /*
+        ArrayList<Ubicacion> nuestrasubicacione = new ArrayList<>();
+
+        ValueEventListener userListener= new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ArrayList<tecnologia> listareclamos = new ArrayList<>();
-                //for (DataSnapshot d : snapshot.getChildren()) {
-                    DataSnapshot u = snapshot.child("Ubicacion");
-                    for (DataSnapshot d2 : u.getChildren()) {
-                        tecnologia t = d2.getValue(tecnologia.class);
-                        listareclamos.add(t);
-                        Log.d("Aula", t.getAula());
-                        Log.d("Descripcion", t.getDescripcion());
-                        Log.d("Piso", t.getPiso());
-                        Log.d("Edificio", t.getEdificio());
+                Log.d("EstoyTrayendo","los reclamos realizados");
+
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    for (DataSnapshot d2 : dataSnapshot.getChildren()) {
+                        Ubicacion miubicacion = d2.getValue(Ubicacion.class);
+
+                        Log.d("Aula", miubicacion.getAula());
+                        Log.d("Descripcion", miubicacion.getDescripcion());
+                        Log.d("Piso", miubicacion.getPiso());
+                        Log.d("Edificio", miubicacion.getEdificio());
+                        nuestrasubicacione.add(miubicacion);
+                        Log.d("EstoyTrayendo",nuestrasubicacione.toString());
                     }
                 }
-            //}
+            }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         };
-        bdd.addValueEventListener (userlistener);
+*/
+        TextView seleccion=findViewById (R.id.seleccion);
+        TextView seleccion2=findViewById (R.id.seleccion2);
+
+        ArrayAdapter<Ubicacion> adaptador= new ArrayAdapter<Ubicacion> (this, android.R.layout.simple_list_item_1 , nuestrasubicaciones);
+        ListView milista=findViewById (R.id.mlista);
+        milista.setAdapter (adaptador);
+        milista.setOnItemClickListener (new AdapterView.OnItemClickListener () {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                seleccion.setText (parent.getItemAtPosition (position).toString ());
+                Log.d("EstoyTrayendo",seleccion.toString());
+
+
+            }
+        });
+
+    }
+    public void ver_reclamos_recibidos(View v){
+        Intent i= new Intent (v.getContext (), reclamosRecibidos.class);
+        startActivity (i);
     }
 }
