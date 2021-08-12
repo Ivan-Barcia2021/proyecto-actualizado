@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tituloMisR"
         android:layout_toRightOf="@+id/MisReclamos"
-        android:onClick="pasar"
+android:onClick="ver_reclamos_recibidos"
         android:text="Reclamos recibidos"
         app:backgroundTint="#3F51B5" />
 
@@ -63,7 +63,7 @@
         android:layout_below="@+id/seleccion2"
         android:text="Realizar nuevo reclamo"
         android:layout_centerHorizontal="true"
-        android:onClick="realizarReclamoNuevo"
+        android:onClick="pasar"
         />
 
 </RelativeLayout>

@@ -26,7 +26,7 @@ public class reclamosRecibidos extends AppCompatActivity {
     }
 
     public void pasar(View v){
-        Intent intent= new Intent (v.getContext (), misreclamos.class);
+        Intent intent= new Intent (v.getContext (), login.class);
         startActivity (intent);
     }
 

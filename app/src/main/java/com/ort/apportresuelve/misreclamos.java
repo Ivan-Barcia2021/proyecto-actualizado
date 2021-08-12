@@ -40,9 +40,11 @@ public class misreclamos extends AppCompatActivity {
         mostrar();
     }
     public void pasar(View v){
-        Intent intent= new Intent (v.getContext (), reclamosRecibidos.class);
+        Intent intent= new Intent (v.getContext (), login.class);
         startActivity (intent);
     }
+
+
    public void mostrar(){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -118,5 +120,9 @@ public class misreclamos extends AppCompatActivity {
             }
         });
 
+    }
+    public void ver_reclamos_recibidos(View v){
+        Intent i= new Intent (v.getContext (), reclamosRecibidos.class);
+        startActivity (i);
     }
 }
