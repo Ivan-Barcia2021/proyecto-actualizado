@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20dp"
-        android:text="Ingrese nombre de usuario:"
+        android:text="Ingrese DNI del usuario:"
         android:layout_marginTop="80dp"
         android:layout_below="@+id/logoLogin"
         />
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:layout_below="@+id/logoLogin"
-        android:hint="Nombre"
+        android:hint="Dni"
         />
 
     <TextView
@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20dp"
-        android:text="Ingrese nombre de usuario:"
+        android:text="Ingrese contraseña del usuario:"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/usuario"
         />

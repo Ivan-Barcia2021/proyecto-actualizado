@@ -74,36 +74,6 @@ public class misreclamos extends AppCompatActivity {
                     }
                 });
 
-       
-        /*
-        ArrayList<Ubicacion> nuestrasubicacione = new ArrayList<>();
-
-        ValueEventListener userListener= new ValueEventListener() {
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.d("EstoyTrayendo","los reclamos realizados");
-
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    for (DataSnapshot d2 : dataSnapshot.getChildren()) {
-                        Ubicacion miubicacion = d2.getValue(Ubicacion.class);
-
-                        Log.d("Aula", miubicacion.getAula());
-                        Log.d("Descripcion", miubicacion.getDescripcion());
-                        Log.d("Piso", miubicacion.getPiso());
-                        Log.d("Edificio", miubicacion.getEdificio());
-                        nuestrasubicacione.add(miubicacion);
-                        Log.d("EstoyTrayendo",nuestrasubicacione.toString());
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        };
-*/
         TextView seleccion=findViewById (R.id.seleccion);
         TextView seleccion2=findViewById (R.id.seleccion2);
 

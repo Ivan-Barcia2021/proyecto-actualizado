@@ -1,23 +1,30 @@
 package com.ort.apportresuelve;
 
 public class usuario {
-    private int DNI;
-    private String DEPARTAMENTO;
-    private String NOMBRE;
-    private String SEDE;
-    private String contraseña;
+    private String DNI;
+    private String Departamento;
+    private String Nombre;
+    private String Sede;
+    private String contrasena;
     public usuario(){
 
     }
-    public int getDNI(){return DNI;}
-    public void setDNI(int DNI){this.DNI=DNI;}
-    public String getDEPARTAMENTO(){ return DEPARTAMENTO; }
-    public void setDEPARTAMENTO(String DEPARTAMENTO){this.DEPARTAMENTO=DEPARTAMENTO;}
-    public  String getNOMBRE() {return NOMBRE;}
-    public void setNOMBRE(String NOMBRE){this.NOMBRE=NOMBRE;}
-    public String getSEDE (){return SEDE;}
-    public void setSEDE(String SEDE){this.SEDE=SEDE;}
-    public String getContraseña(){return contraseña;}
-    public void setContraseña(String contraseña){this.contraseña=contraseña;}
+
+    public String getDNI() {
+        return DNI;
+    }
+
+    public void setDNI(String DNI) {
+        this.DNI = DNI;
+    }
+
+    public String getDepartamento(){ return Departamento; }
+    public void setDepartamento(String Departamento){this.Departamento=Departamento;}
+    public  String getNombre() {return Nombre;}
+    public void setNombre(String Nombre){this.Nombre=Nombre;}
+    public String getSede (){return Sede;}
+    public void setSede(String Sede){this.Sede=Sede;}
+    public String getContrasena(){return contrasena;}
+    public void setContrasena(String contrasena){this.contrasena=contrasena;}
 
 }

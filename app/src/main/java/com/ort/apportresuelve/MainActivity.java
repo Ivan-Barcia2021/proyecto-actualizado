@@ -23,6 +23,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -38,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
 
     EditText nombreUsuario;
     EditText contraseñaUsuario;
+    String dniUsuario;
+    String contUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,28 +52,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void avanzar(View v){
 
-
-    /*    ArrayList<usuario> nuestrosusuarios= new ArrayList<> ();
-        EditText contraseña=findViewById (R.id.contraseña);
-        EditText usuario=findViewById (R.id.usuario);
-        String contraseñaingresada=contraseña.toString ();
-        String usuarioingresado=usuario.toString ();
-
-       FirebaseFirestore db = null;
-        db.collection("Usuarios")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot> () {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                nuestrosusuarios.add (document.toObject (usuario.class));
-                            }
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
-                    }
-                });*/
         if(TextUtils.isEmpty(nombreUsuario.getText())){
 
             Context context = getApplicationContext();
@@ -81,8 +62,8 @@ public class MainActivity extends AppCompatActivity {
             toast.show();
 
             nombreUsuario.setError( "Completa el campo con un nombre valido" );
-
-        }else{
+        }
+        else{
 
             if(TextUtils.isEmpty(contraseñaUsuario.getText())){
 
@@ -94,42 +75,53 @@ public class MainActivity extends AppCompatActivity {
                 toast.show();
 
                 contraseñaUsuario.setError( "Completa el campo con una contraseña valida" );
-
-            }else{
-                Intent intent= new Intent (v.getContext (), misreclamos.class);
-                startActivity (intent);
             }
-        }
+            else{
+                dniUsuario = nombreUsuario.getText().toString();
+                contUsuario = contraseñaUsuario.getText().toString();
+                FirebaseFirestore mibase=FirebaseFirestore.getInstance();
+                CollectionReference usuarios=mibase.collection("Usuarios");
+                ArrayList<usuario> nuestrosusuarios=new ArrayList<>();
+                mibase.collection("Usuarios")
+                        .whereEqualTo("DNI", dniUsuario)
+                        .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                            for (QueryDocumentSnapshot document : task.getResult()){
+                                usuario nuestroUsuario = (usuario)document.toObject(usuario.class);
+                                if(contUsuario.equals(nuestroUsuario.getContrasena())){
+                                    Intent intent= new Intent (v.getContext (), misreclamos.class);
+                                    startActivity (intent);
+                                }
+                                else{
+                                    Context context = getApplicationContext();
+                                    CharSequence text = "Ingrese una contraseña valida";
+                                    int duration = Toast.LENGTH_LONG;
 
+                                    Toast toast = Toast.makeText(context, text, duration);
+                                    toast.show();
+                                    Log.d("TraerUsuario", "contraseña invalida");
+                                }
+                            }
+                        }
+                        else {
+                            Context context = getApplicationContext();
+                            CharSequence text = "Ingrese un usuario valido";
+                            int duration = Toast.LENGTH_LONG;
 
-        //debo traer el dni y la contraseña, compararlos con el ingreso y si es correcto, loguear al usuario.
-     /*   FirebaseFirestore db = null;
-        ArrayList<usuario> nuestrosusuarios= new ArrayList<> ();
-        Task<QuerySnapshot> Usuarios=db.collection ("Usuarios").get ().addOnCompleteListener (new OnCompleteListener<QuerySnapshot> () {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                       nuestrosusuarios.add (document.toObject (usuario.class));
+                            Toast toast = Toast.makeText(context, text, duration);
+                            toast.show();
+                            Log.d("TraerUsuario", "No existe el usuario");
+                        }
+
                     }
-                    EditText usuario=findViewById (R.id.usuario);
-                    EditText contraseña=findViewById (R.id.contraseña);
 
-                }
-                else {
-                    Log.d(TAG, "Error getting documents: ", task.getException());
-                }
+                });
 
-
-        }
-
-
-
-
-    });
-      Intent intent= new Intent (v.getContext (), MainActivity.class);
-      startActivity (intent);
-
-      */
+            }
+            }
     }
-    }
+}
+
+
