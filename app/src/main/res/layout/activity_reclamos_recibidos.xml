@@ -6,34 +6,35 @@ android:padding="10dp"
 xmlns:android="http://schemas.android.com/apk/res/android">
 
 <TextView
-    android:id="@+id/tituloMisR"
+    android:id="@+id/tituloR"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:textColor="@android:color/background_dark"
     android:textStyle="bold"
     android:layout_centerHorizontal="true"
     android:textSize="30dp"
-    android:text="Mis reclamos"/>
+    android:text="Reclamos recibidos"/>
 
 
-<Button
-    android:id="@+id/MisReclamos"
-    android:layout_width="180dp"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/tituloMisR"
-    android:text="Mis reclamos"
-    app:backgroundTint="#2196F3"
-    app:strokeColor="#000000"
-    app:strokeWidth="3dp" />
+    <Button
+        android:id="@+id/MisReclamos"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tituloR"
+        android:text="Mis reclamos"
+        app:backgroundTint="#2196F3"
+        app:strokeColor="#000000" />
 
-<Button
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/tituloMisR"
-    android:layout_toRightOf="@+id/MisReclamos"
-    android:onClick="ver_reclamos_recibidos"
-    android:text="Reclamos recibidos"
-    app:backgroundTint="#3F51B5" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tituloR"
+        android:layout_toRightOf="@+id/MisReclamos"
+        android:onClick="ver_reclamos_recibidos"
+        android:text="Reclamos recibidos"
+        app:backgroundTint="#3F51B5"
+        app:strokeColor="#000000"
+        app:strokeWidth="3dp" />
 
 <ListView
     android:layout_width="match_parent"

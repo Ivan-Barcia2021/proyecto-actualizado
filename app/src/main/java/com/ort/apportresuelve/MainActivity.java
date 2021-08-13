@@ -79,9 +79,11 @@ public class MainActivity extends AppCompatActivity {
             else{
                 dniUsuario = nombreUsuario.getText().toString();
                 contUsuario = contraseñaUsuario.getText().toString();
+
                 FirebaseFirestore mibase=FirebaseFirestore.getInstance();
                 CollectionReference usuarios=mibase.collection("Usuarios");
                 ArrayList<usuario> nuestrosusuarios=new ArrayList<>();
+
                 mibase.collection("Usuarios")
                         .whereEqualTo("DNI", dniUsuario)
                         .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

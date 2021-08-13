@@ -46,11 +46,12 @@ public class reclamosRecibidos extends AppCompatActivity {
 
 
     public void mostrar(){
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        ArrayList<Ubicacion> nuestrasubicaciones = new ArrayList<>();
+        ArrayList<Ubicacion> nuestrosReclamosRecibidos = new ArrayList<>();
+        //Ubicacion nuestroReclamo = (Ubicacion) document.toObject(Ubicacion.class);
+        //String tipoDereclamo = nuestroReclamo.getTipoDeReclamo();
 
         bdd.collection("Reclamos")
+                .whereEqualTo("tipoDeReclamo", "Mantenimiento")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot> () {
                     @Override
@@ -58,15 +59,16 @@ public class reclamosRecibidos extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
 
-                                nuestrasubicaciones.add(document.toObject(Ubicacion.class));
+                                nuestrosReclamosRecibidos.add(document.toObject(Ubicacion.class));
+
                             }
-                            Log.d("TraerReclamo","HOLA");
+                            Log.d("TraerReclamosRecibidos","Recibido");
                             //for recorriendo nuestrasubicaciones para obtener todas las ubicaciones y mostrarlas en la list view con sus atributos.
                             TextView miseleccion =findViewById (R.id.seleccion);
                             ListView lista=findViewById (R.id.mlista);
 
                             Context contexto = null;
-                            AdaptadorUbicacion ubis= new AdaptadorUbicacion( reclamosRecibidos.this,nuestrasubicaciones); //(this, android.R.layout.simple_list_item_1 , nuestrasubicaciones);
+                            AdaptadorUbicacion ubis= new AdaptadorUbicacion( reclamosRecibidos.this,nuestrosReclamosRecibidos); //(this, android.R.layout.simple_list_item_1 , nuestrasubicaciones);
                             lista.setAdapter (ubis);
                         } else {
                             //MUESTRO ERROR
@@ -74,40 +76,10 @@ public class reclamosRecibidos extends AppCompatActivity {
                     }
                 });
 
-
-        /*
-        ArrayList<Ubicacion> nuestrasubicacione = new ArrayList<>();
-
-        ValueEventListener userListener= new ValueEventListener() {
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.d("EstoyTrayendo","los reclamos realizados");
-
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    for (DataSnapshot d2 : dataSnapshot.getChildren()) {
-                        Ubicacion miubicacion = d2.getValue(Ubicacion.class);
-
-                        Log.d("Aula", miubicacion.getAula());
-                        Log.d("Descripcion", miubicacion.getDescripcion());
-                        Log.d("Piso", miubicacion.getPiso());
-                        Log.d("Edificio", miubicacion.getEdificio());
-                        nuestrasubicacione.add(miubicacion);
-                        Log.d("EstoyTrayendo",nuestrasubicacione.toString());
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        };
-*/
         TextView seleccion=findViewById (R.id.seleccion);
         TextView seleccion2=findViewById (R.id.seleccion2);
 
-        ArrayAdapter<Ubicacion> adaptador= new ArrayAdapter<Ubicacion> (this, android.R.layout.simple_list_item_1 , nuestrasubicaciones);
+        ArrayAdapter<Ubicacion> adaptador= new ArrayAdapter<Ubicacion> (this, android.R.layout.simple_list_item_1 , nuestrosReclamosRecibidos);
         ListView milista=findViewById (R.id.mlista);
         milista.setAdapter (adaptador);
         milista.setOnItemClickListener (new AdapterView.OnItemClickListener () {

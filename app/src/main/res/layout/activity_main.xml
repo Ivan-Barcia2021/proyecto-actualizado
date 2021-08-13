@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20dp"
-        android:text="Ingrese DNI del usuario:"
+        android:text="Ingrese su dni:"
         android:layout_marginTop="80dp"
         android:layout_below="@+id/logoLogin"
         />
@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20dp"
-        android:text="Ingrese contraseña del usuario:"
+        android:text="Ingrese contraseña:"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/usuario"
         />
