@@ -55,26 +55,26 @@ public class MainActivity extends AppCompatActivity {
         if(TextUtils.isEmpty(nombreUsuario.getText())){
 
             Context context = getApplicationContext();
-            CharSequence text = "Completa el nombre de usuario valido";
+            CharSequence text = "Completa el dni de usuario";
             int duration = Toast.LENGTH_LONG;
 
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
 
-            nombreUsuario.setError( "Completa el campo con un nombre valido" );
+            nombreUsuario.setError( "Completa el campo con un dni valido" );
         }
         else{
 
             if(TextUtils.isEmpty(contraseñaUsuario.getText())){
 
                 Context context = getApplicationContext();
-                CharSequence text = "Completa con la contraseña valida";
+                CharSequence text = "Completa la contraseña de usuario";
                 int duration = Toast.LENGTH_LONG;
 
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();
 
-                contraseñaUsuario.setError( "Completa el campo con una contraseña valida" );
+                contraseñaUsuario.setError( "Completa el campo con una contraseña" );
             }
             else{
                 dniUsuario = nombreUsuario.getText().toString();
@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         else {
                             Context context = getApplicationContext();
-                            CharSequence text = "Ingrese un usuario valido";
+                            CharSequence text = "Ingrese un dni valido";
                             int duration = Toast.LENGTH_LONG;
 
                             Toast toast = Toast.makeText(context, text, duration);

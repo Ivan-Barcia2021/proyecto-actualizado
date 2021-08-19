@@ -27,11 +27,12 @@
         app:strokeWidth="3dp" />
 
     <Button
+        android:id="@+id/reclamosRecibidosBoton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tituloMisR"
         android:layout_toRightOf="@+id/MisReclamos"
-android:onClick="ver_reclamos_recibidos"
+        android:onClick="ver_reclamos_recibidos"
         android:text="Reclamos recibidos"
         app:backgroundTint="#3F51B5" />
 

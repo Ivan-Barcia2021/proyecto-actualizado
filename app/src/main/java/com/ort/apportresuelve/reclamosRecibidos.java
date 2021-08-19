@@ -48,7 +48,7 @@ public class reclamosRecibidos extends AppCompatActivity {
     public void mostrar(){
         ArrayList<Ubicacion> nuestrosReclamosRecibidos = new ArrayList<>();
         //Ubicacion nuestroReclamo = (Ubicacion) document.toObject(Ubicacion.class);
-        //String tipoDereclamo = nuestroReclamo.getTipoDeReclamo();
+
 
         bdd.collection("Reclamos")
                 .whereEqualTo("tipoDeReclamo", "Mantenimiento")
@@ -60,6 +60,7 @@ public class reclamosRecibidos extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : task.getResult()) {
 
                                 nuestrosReclamosRecibidos.add(document.toObject(Ubicacion.class));
+
 
                             }
                             Log.d("TraerReclamosRecibidos","Recibido");

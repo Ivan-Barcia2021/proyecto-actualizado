@@ -10,8 +10,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -33,12 +35,38 @@ public class misreclamos extends AppCompatActivity {
     FirebaseFirestore bdd = FirebaseFirestore.getInstance();
     CollectionReference reclamos =bdd.collection("Reclamos");
 
+    Button reclamosRecibidosBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_misreclamos);
+        reclamosRecibidosBtn=findViewById(R.id.reclamosRecibidosBoton);
+        //reclamosRecibidosBtn.setVisibility(View.INVISIBLE);
+        //ocultarReclamosRecibidos();
         mostrar();
     }
+
+   /* private void ocultarReclamosRecibidos() {
+        bdd.collection("Usuarios")
+                .whereEqualTo("cargo", "alumno")
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()){
+                    for (QueryDocumentSnapshot document : task.getResult()){
+                        usuario nuestroUsuario = (usuario)document.toObject(usuario.class);
+                        //reclamosRecibidosBtn.setVisibility(View.INVISIBLE);
+                    }
+                }
+                else {
+                    reclamosRecibidosBtn.setVisibility(View.VISIBLE);
+                }
+
+            }
+
+        });
+    }
+*/
     public void pasar(View v){
         Intent intent= new Intent (v.getContext (), login.class);
         startActivity (intent);
@@ -59,6 +87,7 @@ public class misreclamos extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : task.getResult()) {
 
                                 nuestrasubicaciones.add(document.toObject(Ubicacion.class));
+
                             }
                             Log.d("TraerReclamo","HOLA");
                             //for recorriendo nuestrasubicaciones para obtener todas las ubicaciones y mostrarlas en la list view con sus atributos.
@@ -68,8 +97,14 @@ public class misreclamos extends AppCompatActivity {
                             Context contexto = null;
                             AdaptadorUbicacion ubis= new AdaptadorUbicacion( misreclamos.this,nuestrasubicaciones); //(this, android.R.layout.simple_list_item_1 , nuestrasubicaciones);
                             lista.setAdapter (ubis);
+
                         } else {
-                            //MUESTRO ERROR
+                            Context context = getApplicationContext();
+                            CharSequence text = "No se pudo conectar a los reclamos";
+                            int duration = Toast.LENGTH_SHORT;
+
+                            Toast toast = Toast.makeText(context, text, duration);
+                            toast.show();
                         }
                     }
                 });
