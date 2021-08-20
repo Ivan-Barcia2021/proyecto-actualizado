@@ -28,8 +28,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 public class reclamosRecibidos extends AppCompatActivity {
-
-    //DatabaseReference bdd= FirebaseDatabase.getInstance ().getReference ();
     FirebaseFirestore bdd = FirebaseFirestore.getInstance();
     CollectionReference reclamos =bdd.collection("Reclamos");
 
@@ -48,8 +46,6 @@ public class reclamosRecibidos extends AppCompatActivity {
 
     public void mostrar(){
         ArrayList<Ubicacion> nuestrosReclamosRecibidos = new ArrayList<>();
-        //Ubicacion nuestroReclamo = (Ubicacion) document.toObject(Ubicacion.class);
-
 
         bdd.collection("Reclamos")
                 .whereEqualTo("tipoDeReclamo", "Mantenimiento")
@@ -77,7 +73,7 @@ public class reclamosRecibidos extends AppCompatActivity {
                         }
                     }
                 });
-
+/*
         TextView seleccion=findViewById (R.id.seleccion);
         TextView seleccion2=findViewById (R.id.seleccion2);
 
@@ -93,10 +89,10 @@ public class reclamosRecibidos extends AppCompatActivity {
 
             }
         });
-
+*/
     }
-    public void ver_reclamos_recibidos(View v){
-        Intent i= new Intent (v.getContext (), reclamosRecibidos.class);
+    public void ver_mis_reclamos(View v){
+        Intent i= new Intent (v.getContext (), misreclamos.class);
         startActivity (i);
     }
 }

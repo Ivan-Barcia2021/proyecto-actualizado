@@ -6,8 +6,17 @@ public class usuario {
     private String Nombre;
     private String Sede;
     private String contrasena;
+    private String cargo;
     public usuario(){
 
+    }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
     }
 
     public String getDNI() {
