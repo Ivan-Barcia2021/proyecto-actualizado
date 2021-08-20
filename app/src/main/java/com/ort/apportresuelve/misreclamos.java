@@ -36,37 +36,43 @@ public class misreclamos extends AppCompatActivity {
     CollectionReference reclamos =bdd.collection("Reclamos");
 
     Button reclamosRecibidosBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_misreclamos);
         reclamosRecibidosBtn=findViewById(R.id.reclamosRecibidosBoton);
+        Bundle paqueterecibido=this.getIntent ().getExtras ();
+        String dpto=paqueterecibido.getString ("dpto");
+
         //reclamosRecibidosBtn.setVisibility(View.INVISIBLE);
         //ocultarReclamosRecibidos();
+        ocultar (dpto);
         mostrar();
     }
 
-   /* private void ocultarReclamosRecibidos() {
+
+  /*  private void ocultarReclamosRecibidos() {
         bdd.collection("Usuarios")
-                .whereEqualTo("cargo", "alumno")
+                .whereEqualTo("DNI", "787878")
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
                     for (QueryDocumentSnapshot document : task.getResult()){
                         usuario nuestroUsuario = (usuario)document.toObject(usuario.class);
-                        //reclamosRecibidosBtn.setVisibility(View.INVISIBLE);
+                        reclamosRecibidosBtn.setVisibility(View.VISIBLE);
                     }
                 }
                 else {
-                    reclamosRecibidosBtn.setVisibility(View.VISIBLE);
+                    reclamosRecibidosBtn.setVisibility(View.INVISIBLE);
                 }
 
             }
 
         });
-    }
-*/
+    } */
+
     public void pasar(View v){
         Intent intent= new Intent (v.getContext (), login.class);
         startActivity (intent);
@@ -127,7 +133,20 @@ public class misreclamos extends AppCompatActivity {
 
     }
     public void ver_reclamos_recibidos(View v){
+        Bundle paquete_=this.getIntent ().getExtras ();
+        String d=paquete_.getString ("d");
+        Bundle paquete= new Bundle ();
+        paquete.putString ("d", d);
         Intent i= new Intent (v.getContext (), reclamosRecibidos.class);
+        i.putExtras (i);
         startActivity (i);
     }
-}
+   void ocultar(String dpto){
+        if(dpto.equals ("alumno")){
+            reclamosRecibidosBtn.setVisibility(View.INVISIBLE);
+        }
+        else{
+            reclamosRecibidosBtn.setVisibility(View.VISIBLE);
+        }
+
+}}

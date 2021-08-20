@@ -41,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
     EditText contraseñaUsuario;
     String dniUsuario;
     String contUsuario;
-
+    String dpto;
+    String d;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -79,7 +80,12 @@ public class MainActivity extends AppCompatActivity {
             else{
                 dniUsuario = nombreUsuario.getText().toString();
                 contUsuario = contraseñaUsuario.getText().toString();
-
+                if(dniUsuario.equals ("787878") || dniUsuario.equals ("875345")){
+                    dpto="alumno";
+                }
+                else {
+                    dpto="...";
+                }
                 FirebaseFirestore mibase=FirebaseFirestore.getInstance();
                 CollectionReference usuarios=mibase.collection("Usuarios");
                 ArrayList<usuario> nuestrosusuarios=new ArrayList<>();
@@ -92,8 +98,13 @@ public class MainActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             for (QueryDocumentSnapshot document : task.getResult()){
                                 usuario nuestroUsuario = (usuario)document.toObject(usuario.class);
+                                d=nuestroUsuario.getDepartamento ();
                                 if(contUsuario.equals(nuestroUsuario.getContrasena())){
+                                    Bundle paquete= new Bundle ();
+                                    paquete.putString ("dpto", dpto);
+                                    paquete.putString ("d", d);
                                     Intent intent= new Intent (v.getContext (), misreclamos.class);
+                                    intent.putExtras (paquete);
                                     startActivity (intent);
                                 }
                                 else{

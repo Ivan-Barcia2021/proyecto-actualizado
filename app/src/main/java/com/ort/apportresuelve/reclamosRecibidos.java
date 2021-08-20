@@ -37,6 +37,7 @@ public class reclamosRecibidos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_misreclamos);
+
         mostrar();
     }
     public void pasar(View v){
