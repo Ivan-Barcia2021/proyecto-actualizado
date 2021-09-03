@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     String dniUsuario;
     String contUsuario;
     String cargoUsuario;
+    String deptoUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,13 +95,27 @@ public class MainActivity extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : task.getResult()){
                                 usuario nuestroUsuario = (usuario)document.toObject(usuario.class);
                                 cargoUsuario = nuestroUsuario.getCargo();
+                                deptoUsuario = nuestroUsuario.getDepartamento();
 
                                 if(contUsuario.equals(nuestroUsuario.getContrasena())){
-                                    Bundle paquete= new Bundle();
-                                    paquete.putString("cargo", cargoUsuario);
-                                    Intent intent= new Intent (v.getContext (), misreclamos.class);
-                                    intent.putExtras(paquete);
-                                    startActivity (intent);
+                                    if(cargoUsuario.equals("empleado")){
+                                        Bundle paqueteDepto= new Bundle();
+                                        paqueteDepto.putString("Departamento", deptoUsuario);
+                                        Intent intent= new Intent (v.getContext (), reclamosRecibidos.class);
+                                        intent.putExtras(paqueteDepto);
+                                        startActivity(intent);
+                                    }
+                                    else{
+                                        Bundle paquete= new Bundle();
+                                        paquete.putString("cargo", cargoUsuario);
+                                        paquete.putString("Departamento", deptoUsuario);
+                                        if(deptoUsuario.equals(null)){
+                                            deptoUsuario = "Nodepto";
+                                        }
+                                        Intent intent= new Intent (v.getContext (), misreclamos.class);
+                                        intent.putExtras(paquete);
+                                        startActivity (intent);
+                                    }
                                 }
                                 else{
                                     Context context = getApplicationContext();

@@ -30,11 +30,14 @@ import java.util.ArrayList;
 public class reclamosRecibidos extends AppCompatActivity {
     FirebaseFirestore bdd = FirebaseFirestore.getInstance();
     CollectionReference reclamos =bdd.collection("Reclamos");
+    String deptoRecibido;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_reclamos_recibidos);
+        Bundle paqueterecibido=this.getIntent ().getExtras ();
+        deptoRecibido = paqueterecibido.getString ("Departamento");
 
         mostrar();
     }
@@ -48,7 +51,8 @@ public class reclamosRecibidos extends AppCompatActivity {
         ArrayList<Ubicacion> nuestrosReclamosRecibidos = new ArrayList<>();
 
         bdd.collection("Reclamos")
-                .whereEqualTo("tipoDeReclamo", "Mantenimiento")
+                .whereEqualTo("tipoDeReclamo", deptoRecibido)
+
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot> () {
                     @Override
@@ -92,7 +96,11 @@ public class reclamosRecibidos extends AppCompatActivity {
 */
     }
     public void ver_mis_reclamos(View v){
-        Intent i= new Intent (v.getContext (), misreclamos.class);
-        startActivity (i);
+        Bundle paquete= new Bundle();
+        paquete.putString("cargo", "empleado");
+        paquete.putString("Departamento", deptoRecibido);
+        Intent intent= new Intent (v.getContext (), misreclamos.class);
+        intent.putExtras(paquete);
+        startActivity (intent);
     }
 }

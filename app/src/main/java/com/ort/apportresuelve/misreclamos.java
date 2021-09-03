@@ -36,6 +36,7 @@ public class misreclamos extends AppCompatActivity {
 
     Button reclamosRecibidosBtn;
     String cargoRecibido;
+    String deptoRecibido;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,9 @@ public class misreclamos extends AppCompatActivity {
         reclamosRecibidosBtn=findViewById(R.id.reclamosRecibidosBoton);
         Bundle paqueterecibido=this.getIntent ().getExtras ();
         cargoRecibido = paqueterecibido.getString ("cargo");
+
+        Bundle paqueteRecibidoDelDepto=this.getIntent ().getExtras ();
+        deptoRecibido = paqueterecibido.getString ("Departamento");
 
         ocultarBotonReclamosRecibidos (cargoRecibido);
         mostrar();
@@ -109,8 +113,11 @@ public class misreclamos extends AppCompatActivity {
 
     }
     public void ver_reclamos_recibidos(View v){
-        Intent i= new Intent (v.getContext (), reclamosRecibidos.class);
-        startActivity (i);
+        Bundle paqueteDepto= new Bundle();
+        paqueteDepto.putString("Departamento", deptoRecibido);
+        Intent intent= new Intent (v.getContext (), reclamosRecibidos.class);
+        intent.putExtras(paqueteDepto);
+        startActivity(intent);
     }
    void ocultarBotonReclamosRecibidos(String cargoRecibido){
         if(cargoRecibido.equals ("alumno")){
