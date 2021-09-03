@@ -30,25 +30,11 @@
         android:layout_below="@+id/MisReclamos"
         />
 
-    <TextView
-        android:id="@+id/seleccion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/mlista"
-        />
-
-    <TextView
-        android:id="@+id/seleccion2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/mlista"
-        />
-
     <Button
         android:id="@+id/botonRealizarNuevoReclamo"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@+id/seleccion2"
+        android:layout_below="@+id/mlista"
         android:text="Realizar nuevo reclamo"
         android:layout_centerHorizontal="true"
         android:onClick="pasar"

@@ -37,6 +37,7 @@ public class misreclamos extends AppCompatActivity {
     Button reclamosRecibidosBtn;
     String cargoRecibido;
     String deptoRecibido;
+    ListView lista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,8 @@ public class misreclamos extends AppCompatActivity {
 
         Bundle paqueteRecibidoDelDepto=this.getIntent ().getExtras ();
         deptoRecibido = paqueterecibido.getString ("Departamento");
+
+        lista=findViewById (R.id.mlista);
 
         ocultarBotonReclamosRecibidos (cargoRecibido);
         mostrar();
@@ -78,11 +81,11 @@ public class misreclamos extends AppCompatActivity {
                             Log.d("TraerReclamo","HOLA");
                             //for recorriendo nuestrasubicaciones para obtener todas las ubicaciones y mostrarlas en la list view con sus atributos.
                             TextView miseleccion =findViewById (R.id.seleccion);
-                            ListView lista=findViewById (R.id.mlista);
 
                             Context contexto = null;
                             AdaptadorUbicacion ubis= new AdaptadorUbicacion( misreclamos.this,nuestrasubicaciones); //(this, android.R.layout.simple_list_item_1 , nuestrasubicaciones);
                             lista.setAdapter (ubis);
+                            //AdaptadorDetalles deta= new AdaptadorDetalles(misreclamos.this,nuestrasubicaciones);
 
                         } else {
                             Context context = getApplicationContext();
@@ -95,17 +98,13 @@ public class misreclamos extends AppCompatActivity {
                     }
                 });
 
-        TextView seleccion=findViewById (R.id.seleccion);
-        TextView seleccion2=findViewById (R.id.seleccion2);
 
         ArrayAdapter<Ubicacion> adaptador= new ArrayAdapter<Ubicacion> (this, android.R.layout.simple_list_item_1 , nuestrasubicaciones);
-        ListView milista=findViewById (R.id.mlista);
-        milista.setAdapter (adaptador);
-       milista.setOnItemClickListener (new AdapterView.OnItemClickListener () {
+        lista.setAdapter (adaptador);
+       lista.setOnItemClickListener (new AdapterView.OnItemClickListener () {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                seleccion.setText (parent.getItemAtPosition (position).toString ());
-                Log.d("EstoyTrayendo",seleccion.toString());
+                Log.d("toque item","");
 
 
             }

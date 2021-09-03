@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/nombreReclamador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/fechaReclamo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        app:layout_constraintTop_toBottomOf="@id/nombreReclamador"
+        android:text="Fecha:"
+        />
+    <TextView
+        android:id="@+id/fechaTraida"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="3/9"
+        android:textSize="25dp"
+        app:layout_constraintTop_toBottomOf="@id/fechaReclamo"
+        />
+    <TextView
+        android:id="@+id/descripcionReclamo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        app:layout_constraintTop_toBottomOf="@id/fechaTraida"
+        android:text="Descripción:"
+        />
+
+    <TextView
+        android:id="@+id/descripcionTraida"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="fukserahflñwshpedfgewsrpoi rpowerpjewsj flckdsjfajsldjflsdaflshadfklhsadklfhsadhfsahdñlf"
+        android:textSize="25dp"
+        app:layout_constraintTop_toBottomOf="@id/descripcionReclamo"
+        />
+    <TextView
+        android:id="@+id/edificioReclamo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_marginTop="3dp"
+        app:layout_constraintTop_toBottomOf="@id/descripcionTraida"
+        android:text="Edificio:"
+        />
+    <TextView
+        android:id="@+id/edificioTraido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1 Yatay"
+        android:textSize="25dp"
+        app:layout_constraintTop_toBottomOf="@id/edificioReclamo"
+        />
+    <TextView
+        android:id="@+id/pisoReclamo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_marginTop="3dp"
+        app:layout_constraintTop_toBottomOf="@id/edificioTraido"
+        android:text="Piso:"
+        />
+    <TextView
+        android:id="@+id/pisoTraido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="3"
+        android:textSize="25dp"
+        app:layout_constraintTop_toBottomOf="@id/pisoReclamo"
+        />
+    <TextView
+        android:id="@+id/aulaReclamo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_marginTop="3dp"
+        app:layout_constraintTop_toBottomOf="@id/pisoTraido"
+        android:text="Aula/Lugar:"
+        />
+
+    <TextView
+        android:id="@+id/aulaTraida"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1307"
+        android:textSize="25dp"
+        app:layout_constraintTop_toBottomOf="@id/aulaReclamo"
+        tools:layout_editor_absoluteX="78dp"
+        tools:layout_editor_absoluteY="330dp" />
+
+    <Button
+        android:id="@+id/botonEnProceso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="En proceso"
+        app:backgroundTint="#CAA409"
+        android:layout_marginLeft="10dp"
+        app:layout_constraintTop_toBottomOf="@id/aulaTraida"/>
+
+    <Button
+        android:id="@+id/botonResuelto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Resuelto"
+        app:backgroundTint="#1EAE0F"
+        android:layout_marginLeft="5dp"
+        app:layout_constraintLeft_toRightOf="@+id/botonEnProceso"
+        app:layout_constraintTop_toBottomOf="@id/aulaTraida"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
