@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,7 +28,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 
 @SuppressWarnings("ALL")
 public class misreclamos extends AppCompatActivity {
@@ -38,6 +41,9 @@ public class misreclamos extends AppCompatActivity {
     String cargoRecibido;
     String deptoRecibido;
     ListView lista;
+
+    Date d = new Date(); CharSequence s = DateFormat.format("d/MM", d.getTime());
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +57,10 @@ public class misreclamos extends AppCompatActivity {
         deptoRecibido = paqueterecibido.getString ("Departamento");
 
         lista=findViewById (R.id.mlista);
-
+        /*private ArrayList<Ubicacion> ubicacionArrayList;
+        ubicacionArrayList= GetArrayItems();*/
         ocultarBotonReclamosRecibidos (cargoRecibido);
+        Log.d("fecha", String.valueOf(s));
         mostrar();
     }
 
@@ -66,6 +74,7 @@ public class misreclamos extends AppCompatActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         ArrayList<Ubicacion> nuestrasubicaciones = new ArrayList<>();
+
 
         bdd.collection("Reclamos")
                 .get()
@@ -105,8 +114,9 @@ public class misreclamos extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("toque item","");
-
-
+                Intent intent = new Intent(misreclamos.this, DescReclamos.class);
+                intent.putExtra("objetoDetalles", (Serializable) nuestrasubicaciones.get(position));
+                startActivity(intent);
             }
         });
 

@@ -1,10 +1,16 @@
 package com.ort.apportresuelve;
 
-public class Ubicacion {
+import android.text.format.DateFormat;
+
+import java.io.Serializable;
+import java.util.Date;
+
+public class Ubicacion implements Serializable {
     private  String descripcion;
     private String edificio;
     private String piso;
     private String aula;
+
 
     private String tipoDeReclamo;
 
@@ -50,7 +56,5 @@ public class Ubicacion {
         return descripcion;
 
     }
-
-
 
 }
