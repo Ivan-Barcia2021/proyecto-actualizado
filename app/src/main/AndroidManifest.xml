@@ -12,6 +12,7 @@
         <activity android:name=".login"></activity>
         <activity android:name=".reclamosRecibidos" />
         <activity android:name=".misreclamos" />
+        <activity android:name=".DescReclamos"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

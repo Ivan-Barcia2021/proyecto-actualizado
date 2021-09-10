@@ -2,12 +2,15 @@ package com.ort.apportresuelve;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.recyclerview.widget.RecyclerView;
 //import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -54,6 +57,8 @@ private Context micontexto;
             view = inflater.inflate(R.layout.list_reclamos, viewGroup, false);
         }
 
+
+
         TextView tipoReclamoAmostrar = (TextView) view.findViewById(R.id.tipodeReclamoAmostrar);
         TextView descAmostrar = (TextView) view.findViewById(R.id.descripcionAmostrar);
         TextView edificioAmostrar = (TextView) view.findViewById(R.id.edificioAmostrar);
@@ -67,6 +72,23 @@ private Context micontexto;
         pisoAmostrar.setText(p.getPiso());
         aulaAmostrar.setText(p.getAula());
         Log.d("TraerReclamo","CHAU");
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("toque item 2",p.getDescripcion());
+                Toast.makeText(micontexto,"Toque item", Toast.LENGTH_SHORT).show();
+                Bundle paquetedatos= new Bundle();
+                paquetedatos.putString("descripcion", p.getDescripcion());
+                paquetedatos.putString("edificio", p.getEdificio());
+                paquetedatos.putString("piso", p.getPiso());
+                paquetedatos.putString("aula", p.getAula());
+                paquetedatos.putString("tipoDeReclamo", p.getTipoDeReclamo());
+                Intent intent= new Intent(v.getContext(), DescReclamos.class );
+                intent.putExtras(paquetedatos);
+                micontexto.startActivity(intent);
+            }
+        });
         return view;
 
     }

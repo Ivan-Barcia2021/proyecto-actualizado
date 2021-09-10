@@ -9,12 +9,18 @@ public class DescReclamos extends AppCompatActivity {
 
     private Ubicacion reclamoDetallado;
     TextView descripcion, edificio, piso, aula;
-
+    String _descripcion, _edificio, _piso, _aula;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.desc_reclamos);
+Bundle paqueterecibido= new Bundle();
+paqueterecibido=this.getIntent().getExtras();
+_descripcion=paqueterecibido.getString("descripcion");
+_edificio=paqueterecibido.getString("edificio");
+_piso=paqueterecibido.getString("piso");
+_aula=paqueterecibido.getString("aula");
 
         reclamoDetallado = (Ubicacion) getIntent().getSerializableExtra("objetoDetalles");
 
@@ -23,10 +29,10 @@ public class DescReclamos extends AppCompatActivity {
         piso=findViewById(R.id.pisoTraido);
         aula=findViewById(R.id.aulaTraida);
 
-        descripcion.setText(reclamoDetallado.getDescripcion());
-        edificio.setText(reclamoDetallado.getEdificio());
-        piso.setText(reclamoDetallado.getPiso());
-        aula.setText(reclamoDetallado.getAula());
+        descripcion.setText(_descripcion);
+        edificio.setText(_edificio);
+        piso.setText(_piso);
+        aula.setText(_aula);
 
     }
 

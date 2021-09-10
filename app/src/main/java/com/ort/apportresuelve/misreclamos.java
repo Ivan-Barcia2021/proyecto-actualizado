@@ -110,7 +110,9 @@ public class misreclamos extends AppCompatActivity {
 
         ArrayAdapter<Ubicacion> adaptador= new ArrayAdapter<Ubicacion> (this, android.R.layout.simple_list_item_1 , nuestrasubicaciones);
         lista.setAdapter (adaptador);
-       lista.setOnItemClickListener (new AdapterView.OnItemClickListener () {
+
+       lista.setClickable(true);
+       lista.setOnItemClickListener (new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("toque item","");
