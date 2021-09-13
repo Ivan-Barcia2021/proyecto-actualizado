@@ -67,15 +67,13 @@ private Context micontexto;
         fechaAmostrar.setText(p.getFecha());
 
         usuario nuestroUsuario = (usuario) new usuario();
-
+//MOSTRAR NOMBRE RECLAMADOR NO MUESTRA NADA
 
         Log.d("TraerReclamo","CHAU");
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("toque item 2",p.getDescripcion());
-                Toast.makeText(micontexto,"Toque item", Toast.LENGTH_SHORT).show();
                 Bundle paquetedatos= new Bundle();
                 paquetedatos.putString("descripcion", p.getDescripcion());
                 paquetedatos.putString("edificio", p.getEdificio());

@@ -1,6 +1,9 @@
 package com.ort.apportresuelve;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +13,8 @@ public class DescReclamos extends AppCompatActivity {
     private Ubicacion reclamoDetallado;
     TextView descripcion, edificio, piso, aula, fecha, nombreReclamador;
     String _descripcion, _edificio, _piso, _aula, _fecha, _nombreReclamador;
+    Button enProceso, resuelto;
+    String deptoRecibido;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +29,8 @@ public class DescReclamos extends AppCompatActivity {
         _fecha=paqueterecibido.getString("fecha");
         _nombreReclamador=paqueterecibido.getString("nombreReclamador");
 
+        enProceso=findViewById(R.id.botonEnProceso);
+        resuelto=findViewById(R.id.botonResuelto);
 
         reclamoDetallado = (Ubicacion) getIntent().getSerializableExtra("objetoDetalles");
 
@@ -41,8 +48,17 @@ public class DescReclamos extends AppCompatActivity {
         fecha.setText(_fecha);
         nombreReclamador.setText(_nombreReclamador);
 
+        Bundle paqueteRecibidoDelDepto=this.getIntent ().getExtras ();
+        deptoRecibido = paqueteRecibidoDelDepto.getString ("Departamento");
     }
 
+    public void cambiar_estado_enProceso(View v){
+        Bundle paqueteDepto= new Bundle();
+        paqueteDepto.putString("Departamento", deptoRecibido);
+        Intent intent= new Intent (v.getContext (), reclamosRecibidos.class);
+        intent.putExtras(paqueteDepto);
+        startActivity(intent);
+    }
 
 
 }

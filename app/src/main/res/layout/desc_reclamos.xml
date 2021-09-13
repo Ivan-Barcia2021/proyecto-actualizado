@@ -110,6 +110,7 @@
         android:layout_marginTop="48dp"
         android:text="En proceso"
         app:backgroundTint="#CAA409"
+        android:onClick="cambiar_estado_enProceso"
         app:layout_constraintTop_toBottomOf="@id/aulaTraida"
         tools:layout_editor_absoluteX="65dp" />
 
