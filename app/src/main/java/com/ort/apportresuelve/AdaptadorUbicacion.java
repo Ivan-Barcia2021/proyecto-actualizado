@@ -60,17 +60,15 @@ private Context micontexto;
 
 
         TextView tipoReclamoAmostrar = (TextView) view.findViewById(R.id.tipodeReclamoAmostrar);
-        TextView descAmostrar = (TextView) view.findViewById(R.id.descripcionAmostrar);
-        TextView edificioAmostrar = (TextView) view.findViewById(R.id.edificioAmostrar);
-        TextView pisoAmostrar = (TextView) view.findViewById(R.id.pisoAmostrar);
-        TextView aulaAmostrar = (TextView) view.findViewById(R.id.aulaAmostrar);
+        TextView fechaAmostrar = (TextView) view.findViewById(R.id.fechaAmostrar);
 
         Ubicacion p = reclamosUB.get(position);
         tipoReclamoAmostrar.setText(p.getTipoDeReclamo());
-        descAmostrar.setText(p.getDescripcion());
-        edificioAmostrar.setText(p.getEdificio());
-        pisoAmostrar.setText(p.getPiso());
-        aulaAmostrar.setText(p.getAula());
+        fechaAmostrar.setText(p.getFecha());
+
+        usuario nuestroUsuario = (usuario) new usuario();
+
+
         Log.d("TraerReclamo","CHAU");
 
         view.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +82,8 @@ private Context micontexto;
                 paquetedatos.putString("piso", p.getPiso());
                 paquetedatos.putString("aula", p.getAula());
                 paquetedatos.putString("tipoDeReclamo", p.getTipoDeReclamo());
+                paquetedatos.putString("fecha", p.getFecha());
+                paquetedatos.putString("nombreReclamador", nuestroUsuario.getNombre());
                 Intent intent= new Intent(v.getContext(), DescReclamos.class );
                 intent.putExtras(paquetedatos);
                 micontexto.startActivity(intent);

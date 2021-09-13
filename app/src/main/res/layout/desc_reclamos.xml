@@ -20,7 +20,7 @@
         android:id="@+id/fechaReclamo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="15dp"
+        android:textSize="20dp"
         app:layout_constraintTop_toBottomOf="@id/nombreReclamador"
         android:text="Fecha:"
         />
@@ -36,7 +36,7 @@
         android:id="@+id/descripcionReclamo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="15dp"
+        android:textSize="20dp"
         app:layout_constraintTop_toBottomOf="@id/fechaTraida"
         android:text="Descripción:"
         />
@@ -53,7 +53,7 @@
         android:id="@+id/edificioReclamo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="15dp"
+        android:textSize="20dp"
         android:layout_marginTop="3dp"
         app:layout_constraintTop_toBottomOf="@id/descripcionTraida"
         android:text="Edificio:"
@@ -70,7 +70,7 @@
         android:id="@+id/pisoReclamo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="15dp"
+        android:textSize="20dp"
         android:layout_marginTop="3dp"
         app:layout_constraintTop_toBottomOf="@id/edificioTraido"
         android:text="Piso:"
@@ -87,7 +87,7 @@
         android:id="@+id/aulaReclamo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="15dp"
+        android:textSize="20dp"
         android:layout_marginTop="3dp"
         app:layout_constraintTop_toBottomOf="@id/pisoTraido"
         android:text="Aula/Lugar:"
@@ -107,23 +107,22 @@
         android:id="@+id/botonEnProceso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="48dp"
         android:text="En proceso"
         app:backgroundTint="#CAA409"
-        android:layout_marginLeft="10dp"
-        app:layout_constraintTop_toBottomOf="@id/aulaTraida"/>
+        app:layout_constraintTop_toBottomOf="@id/aulaTraida"
+        tools:layout_editor_absoluteX="65dp" />
 
     <Button
         android:id="@+id/botonResuelto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="48dp"
         android:text="Resuelto"
         app:backgroundTint="#1EAE0F"
-        android:layout_marginLeft="5dp"
         app:layout_constraintLeft_toRightOf="@+id/botonEnProceso"
-        app:layout_constraintTop_toBottomOf="@id/aulaTraida"
-        />
+        app:layout_constraintTop_toBottomOf="@id/aulaTraida" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

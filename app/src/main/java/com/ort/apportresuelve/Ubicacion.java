@@ -10,9 +10,16 @@ public class Ubicacion implements Serializable {
     private String edificio;
     private String piso;
     private String aula;
-
-
     private String tipoDeReclamo;
+    private String fecha;
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
 
     public String getTipoDeReclamo() {
         return tipoDeReclamo;

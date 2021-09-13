@@ -42,8 +42,6 @@ public class misreclamos extends AppCompatActivity {
     String deptoRecibido;
     ListView lista;
 
-    Date d = new Date(); CharSequence s = DateFormat.format("d/MM", d.getTime());
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +58,7 @@ public class misreclamos extends AppCompatActivity {
         /*private ArrayList<Ubicacion> ubicacionArrayList;
         ubicacionArrayList= GetArrayItems();*/
         ocultarBotonReclamosRecibidos (cargoRecibido);
-        Log.d("fecha", String.valueOf(s));
+
         mostrar();
     }
 

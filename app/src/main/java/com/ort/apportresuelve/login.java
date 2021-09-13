@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -26,6 +27,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,6 +49,8 @@ public class login extends AppCompatActivity {
     EditText mitexto;
 
     String tipoDeReclamoSeleccionado;
+    Date d = new Date(); CharSequence fechaFormat = DateFormat.format("d/MM", d.getTime());
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,7 +129,6 @@ public class login extends AppCompatActivity {
                 edificio = textoSeleccionado;
                 piso = textoSeleccionado2;
                 descripcion = mitexto.getText ().toString ();
-//revisar piso y edificio
 
                 Map<String, Object> registro = new HashMap<> ();
                 registro.put ("edificio", edificio);
@@ -133,6 +136,7 @@ public class login extends AppCompatActivity {
                 registro.put ("aula", aulaIngresada);
                 registro.put ("descripcion", descripcion);
                 registro.put("tipoDeReclamo", tipoDeReclamoSeleccionado);
+                registro.put("fecha", fechaFormat);
                 db.collection ("Reclamos").add(registro).addOnSuccessListener (new OnSuccessListener<DocumentReference> () {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
@@ -153,6 +157,7 @@ public class login extends AppCompatActivity {
                 paquete.putString ("aulaIngresada", aulaIngresada);
                 paquete.putString ("descripcion", descripcion);
                 paquete.putString("tipoDeReclamo", tipoDeReclamoSeleccionado);
+                paquete.putString("fecha", (String) fechaFormat);
                 Intent myIntent = new Intent (v.getContext (), misreclamos.class);
                 startActivity (myIntent);
             }
@@ -183,43 +188,4 @@ public class login extends AppCompatActivity {
         }
     }
 
-
-/*
-    public void guardar(View v) {
-        String edificio;
-        String aulaIngresada;
-        String piso;
-        String descripcion;
-        botonpresionado = (Button) v;
-        aulaIngresada = aula.getText ().toString ();
-        edificio = textoSeleccionado;
-        piso = textoSeleccionado2;
-        descripcion = mitexto.getText ().toString ();
-        if (botonpresionado.getId () == R.id.mantenimientoBoton) {
-
-            Map<String, Object> registroUbicacion = new HashMap<> ();
-            registroUbicacion.put ("edificio", edificio);
-            registroUbicacion.put ("piso", piso);
-            registroUbicacion.put ("aula", aulaIngresada);
-            registroUbicacion.put ("descripcion", descripcion);
-            bdd.child ("mantenimiento").push ().setValue (registroUbicacion);
-
-        } else if (botonpresionado.getId () == R.id.vinculosBoton) {
-            Map<String, Object> registroUbicacion = new HashMap<> ();
-            registroUbicacion.put ("edificio", edificio);
-            registroUbicacion.put ("piso", piso);
-            registroUbicacion.put ("aula", aulaIngresada);
-            registroUbicacion.put ("descripcion", descripcion);
-            bdd.child ("vinculos").push ().setValue (registroUbicacion);
-        } else {
-            Map<String, Object> registroUbicacion = new HashMap<> ();
-            registroUbicacion.put ("edificio", edificio);
-            registroUbicacion.put ("piso", piso);
-            registroUbicacion.put ("aula", aulaIngresada);
-            registroUbicacion.put ("descripcion", descripcion);
-            bdd.child ("tecnologia").push ().setValue (registroUbicacion);
-        }
-
-    }
- */
    }
