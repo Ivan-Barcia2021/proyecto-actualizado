@@ -37,24 +37,26 @@ import static android.content.ContentValues.TAG;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText nombreUsuario;
+    EditText dniIngresadoUsuario;
     EditText contraseñaUsuario;
     String dniUsuario;
     String contUsuario;
     String cargoUsuario;
     String deptoUsuario;
+    String nombreUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_main);
-        nombreUsuario=findViewById(R.id.usuario);
+        dniIngresadoUsuario=findViewById(R.id.usuario);
         contraseñaUsuario=findViewById(R.id.contraseña);
+
     }
 
     public void avanzar(View v){
 
-        if(TextUtils.isEmpty(nombreUsuario.getText())){
+        if(TextUtils.isEmpty(dniIngresadoUsuario.getText())){
 
             Context context = getApplicationContext();
             CharSequence text = "Completa el dni de usuario";
@@ -63,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
 
-            nombreUsuario.setError( "Completa el campo con un dni valido" );
+            dniIngresadoUsuario.setError( "Completa el campo con un dni valido" );
         }
         else{
 
@@ -79,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 contraseñaUsuario.setError( "Completa el campo con una contraseña" );
             }
             else{
-                dniUsuario = nombreUsuario.getText().toString();
+                dniUsuario = dniIngresadoUsuario.getText().toString();
                 contUsuario = contraseñaUsuario.getText().toString();
 
                 FirebaseFirestore mibase=FirebaseFirestore.getInstance();
@@ -96,11 +98,13 @@ public class MainActivity extends AppCompatActivity {
                                 usuario nuestroUsuario = (usuario)document.toObject(usuario.class);
                                 cargoUsuario = nuestroUsuario.getCargo();
                                 deptoUsuario = nuestroUsuario.getDepartamento();
+                                nombreUsuario = nuestroUsuario.getNombre();
 
                                 if(contUsuario.equals(nuestroUsuario.getContrasena())){
                                     if(cargoUsuario.equals("empleado")){
                                         Bundle paqueteDepto= new Bundle();
                                         paqueteDepto.putString("Departamento", deptoUsuario);
+                                        paqueteDepto.putString("NombreUsuario", nombreUsuario);
                                         Intent intent= new Intent (v.getContext (), reclamosRecibidos.class);
                                         intent.putExtras(paqueteDepto);
                                         startActivity(intent);
@@ -109,9 +113,7 @@ public class MainActivity extends AppCompatActivity {
                                         Bundle paquete= new Bundle();
                                         paquete.putString("cargo", cargoUsuario);
                                         paquete.putString("Departamento", deptoUsuario);
-                                        if(deptoUsuario.equals(null)){
-                                            deptoUsuario = "Nodepto";
-                                        }
+                                        paquete.putString("NombreUsuario", nombreUsuario);
                                         Intent intent= new Intent (v.getContext (), misreclamos.class);
                                         intent.putExtras(paquete);
                                         startActivity (intent);

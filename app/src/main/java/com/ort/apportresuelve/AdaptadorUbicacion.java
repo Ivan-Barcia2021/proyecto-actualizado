@@ -66,9 +66,6 @@ private Context micontexto;
         tipoReclamoAmostrar.setText(p.getTipoDeReclamo());
         fechaAmostrar.setText(p.getFecha());
 
-        usuario nuestroUsuario = (usuario) new usuario();
-//MOSTRAR NOMBRE RECLAMADOR NO MUESTRA NADA
-
         Log.d("TraerReclamo","CHAU");
 
         view.setOnClickListener(new View.OnClickListener() {
@@ -81,7 +78,7 @@ private Context micontexto;
                 paquetedatos.putString("aula", p.getAula());
                 paquetedatos.putString("tipoDeReclamo", p.getTipoDeReclamo());
                 paquetedatos.putString("fecha", p.getFecha());
-                paquetedatos.putString("nombreReclamador", nuestroUsuario.getNombre());
+                paquetedatos.putString("nombreReclamador", p.getnombreUsuario());
                 Intent intent= new Intent(v.getContext(), DescReclamos.class );
                 intent.putExtras(paquetedatos);
                 micontexto.startActivity(intent);

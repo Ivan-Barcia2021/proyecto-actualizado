@@ -31,6 +31,7 @@ public class reclamosRecibidos extends AppCompatActivity {
     FirebaseFirestore bdd = FirebaseFirestore.getInstance();
     CollectionReference reclamos =bdd.collection("Reclamos");
     String deptoRecibido;
+    String nombreusuariorecibido;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +39,15 @@ public class reclamosRecibidos extends AppCompatActivity {
         setContentView (R.layout.activity_reclamos_recibidos);
         Bundle paqueterecibido=this.getIntent ().getExtras ();
         deptoRecibido = paqueterecibido.getString ("Departamento");
+        nombreusuariorecibido=paqueterecibido.getString("NombreUsuario");
 
         mostrar();
     }
     public void pasar(View v){
+        Bundle paquete_nombre= new Bundle();
+        paquete_nombre.putString("nombre", nombreusuariorecibido);
         Intent intent= new Intent (v.getContext (), login.class);
+        intent.putExtras(paquete_nombre);
         startActivity (intent);
     }
 
@@ -99,6 +104,7 @@ public class reclamosRecibidos extends AppCompatActivity {
         Bundle paquete= new Bundle();
         paquete.putString("cargo", "empleado");
         paquete.putString("Departamento", deptoRecibido);
+        paquete.putString("NombreUsuario", nombreusuariorecibido);
         Intent intent= new Intent (v.getContext (), misreclamos.class);
         intent.putExtras(paquete);
         startActivity (intent);

@@ -12,6 +12,15 @@ public class Ubicacion implements Serializable {
     private String aula;
     private String tipoDeReclamo;
     private String fecha;
+    private String nombreUsuario;
+
+    public String getnombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
 
     public String getFecha() {
         return fecha;

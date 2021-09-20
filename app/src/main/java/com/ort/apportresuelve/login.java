@@ -45,6 +45,7 @@ public class login extends AppCompatActivity {
     String textoSeleccionado2;
     EditText aula;
     Button botonContinuar;
+    String nombreusuario;
 
     EditText mitexto;
 
@@ -83,10 +84,8 @@ public class login extends AppCompatActivity {
             }
         });
 
-
-
-
-
+        Bundle paqueterecibido=this.getIntent().getExtras();
+        nombreusuario=paqueterecibido.getString("nombre");
 
 
         DatosLista2 = new ArrayList<> ();
@@ -137,6 +136,7 @@ public class login extends AppCompatActivity {
                 registro.put ("descripcion", descripcion);
                 registro.put("tipoDeReclamo", tipoDeReclamoSeleccionado);
                 registro.put("fecha", fechaFormat);
+                registro.put("nombreUsuario", nombreusuario);
                 db.collection ("Reclamos").add(registro).addOnSuccessListener (new OnSuccessListener<DocumentReference> () {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
@@ -158,6 +158,7 @@ public class login extends AppCompatActivity {
                 paquete.putString ("descripcion", descripcion);
                 paquete.putString("tipoDeReclamo", tipoDeReclamoSeleccionado);
                 paquete.putString("fecha", (String) fechaFormat);
+                paquete.putString("nombreUsuario", nombreusuario);
                 Intent myIntent = new Intent (v.getContext (), misreclamos.class);
                 startActivity (myIntent);
             }
