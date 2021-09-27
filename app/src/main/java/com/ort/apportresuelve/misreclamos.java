@@ -1,9 +1,11 @@
 package com.ort.apportresuelve;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
@@ -73,60 +75,83 @@ public class misreclamos extends AppCompatActivity {
     }
 
 
-   public void mostrar(){
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+   public void mostrar() {
+       FirebaseFirestore db = FirebaseFirestore.getInstance ();
 
-        ArrayList<Ubicacion> nuestrasubicaciones = new ArrayList<>();
+       ArrayList<Ubicacion> nuestrasubicaciones = new ArrayList<> ();
+       AlertDialog.Builder mensaje;
+       mensaje = new AlertDialog.Builder (this);
+       mensaje.setTitle ("Mis Reclamos");
+       String[] opciones = {"Ver por departamento", "Ver desde mas recientes", "Ver desde mas antiguos"};
+       boolean[] opcionespreseleccionadas = {false, false, false};
+       DialogInterface.OnMultiChoiceClickListener escuchadorOpciones = null;
+       mensaje.setMultiChoiceItems (opciones, opcionespreseleccionadas, escuchadorOpciones);
+       DialogInterface.OnClickListener escuchador = null;
+       mensaje.setPositiveButton ("Aceptar", escuchador);
+       mensaje.create ();
+       mensaje.show ();
+       escuchador = new DialogInterface.OnClickListener () {
+           @Override
+           public void onClick(DialogInterface dialog, int which) {
+               Log.d ("Dialogo", "opciontocada" + which);
+           }
+       };
+       escuchadorOpciones = new DialogInterface.OnMultiChoiceClickListener () {
+           @Override
+           public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+               Log.d ("Dialogo", "Toco - which" + which + "-b" + isChecked);
+           }
+       };
+
+       bdd.collection ("Reclamos")
+               //.whereEqualTo ("nombreUsuario", nombreusuariorecibido)
+               .orderBy ("tipoDeReclamo", Query.Direction.ASCENDING)
+               .get ()
+               .addOnCompleteListener (new OnCompleteListener<QuerySnapshot> () {
+                   @Override
+                   public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                       if (task.isSuccessful ()) {
+                           for (QueryDocumentSnapshot document : task.getResult ()) {
+
+                               nuestrasubicaciones.add (document.toObject (Ubicacion.class));
+
+                           }
+                           Log.d ("TraerReclamo", "HOLA");
+                           //for recorriendo nuestrasubicaciones para obtener todas las ubicaciones y mostrarlas en la list view con sus atributos.
+                           TextView miseleccion = findViewById (R.id.seleccion);
+
+                           Context contexto = null;
+                           AdaptadorUbicacion ubis = new AdaptadorUbicacion (misreclamos.this, nuestrasubicaciones); //(this, android.R.layout.simple_list_item_1 , nuestrasubicaciones);
+                           lista.setAdapter (ubis);
+                           //AdaptadorDetalles deta= new AdaptadorDetalles(misreclamos.this,nuestrasubicaciones);
+
+                       } else {
+                           Context context = getApplicationContext ();
+                           CharSequence text = "No se pudo conectar a los reclamos";
+                           int duration = Toast.LENGTH_SHORT;
+
+                           Toast toast = Toast.makeText (context, text, duration);
+                           toast.show ();
+                       }
+                   }
+               });
 
 
-        bdd.collection("Reclamos")
-                .orderBy ("fecha", Query.Direction.DESCENDING)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
+       ArrayAdapter<Ubicacion> adaptador = new ArrayAdapter<Ubicacion> (this, android.R.layout.simple_list_item_1, nuestrasubicaciones);
+       lista.setAdapter (adaptador);
 
-                                nuestrasubicaciones.add(document.toObject(Ubicacion.class));
+       lista.setClickable (true);
+       lista.setOnItemClickListener (new AdapterView.OnItemClickListener () {
+           @Override
+           public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+               Log.d ("toque item", "");
+               Intent intent = new Intent (misreclamos.this, DescReclamos.class);
+               intent.putExtra ("objetoDetalles", (Serializable) nuestrasubicaciones.get (position));
+               startActivity (intent);
+           }
+       });
 
-                            }
-                            Log.d("TraerReclamo","HOLA");
-                            //for recorriendo nuestrasubicaciones para obtener todas las ubicaciones y mostrarlas en la list view con sus atributos.
-                            TextView miseleccion =findViewById (R.id.seleccion);
-
-                            Context contexto = null;
-                            AdaptadorUbicacion ubis= new AdaptadorUbicacion( misreclamos.this,nuestrasubicaciones); //(this, android.R.layout.simple_list_item_1 , nuestrasubicaciones);
-                            lista.setAdapter (ubis);
-                            //AdaptadorDetalles deta= new AdaptadorDetalles(misreclamos.this,nuestrasubicaciones);
-
-                        } else {
-                            Context context = getApplicationContext();
-                            CharSequence text = "No se pudo conectar a los reclamos";
-                            int duration = Toast.LENGTH_SHORT;
-
-                            Toast toast = Toast.makeText(context, text, duration);
-                            toast.show();
-                        }
-                    }
-                });
-
-
-        ArrayAdapter<Ubicacion> adaptador= new ArrayAdapter<Ubicacion> (this, android.R.layout.simple_list_item_1 , nuestrasubicaciones);
-        lista.setAdapter (adaptador);
-
-       lista.setClickable(true);
-       lista.setOnItemClickListener (new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("toque item","");
-                Intent intent = new Intent(misreclamos.this, DescReclamos.class);
-                intent.putExtra("objetoDetalles", (Serializable) nuestrasubicaciones.get(position));
-                startActivity(intent);
-            }
-        });
-
-    }
+   }
     public void ver_reclamos_recibidos(View v){
         Bundle paqueteDepto= new Bundle();
         paqueteDepto.putString("Departamento", deptoRecibido);
