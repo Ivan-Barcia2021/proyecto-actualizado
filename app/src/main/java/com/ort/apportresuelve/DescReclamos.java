@@ -28,7 +28,7 @@ public class DescReclamos extends AppCompatActivity {
         _aula=paqueterecibido.getString("aula");
         _fecha=paqueterecibido.getString("fecha");
         _nombreReclamador=paqueterecibido.getString("nombreReclamador");
-
+         deptoRecibido=paqueterecibido.getString ("Departamento");
         enProceso=findViewById(R.id.botonEnProceso);
         resuelto=findViewById(R.id.botonResuelto);
 
@@ -48,8 +48,8 @@ public class DescReclamos extends AppCompatActivity {
         fecha.setText(_fecha);
         nombreReclamador.setText(_nombreReclamador);
 
-        Bundle paqueteRecibidoDelDepto=this.getIntent ().getExtras ();
-        deptoRecibido = paqueteRecibidoDelDepto.getString ("Departamento");
+        //Bundle paqueteRecibidoDelDepto=this.getIntent ().getExtras ();
+        //deptoRecibido = paqueteRecibidoDelDepto.getString ("Departamento");
     }
 
     public void cambiar_estado_enProceso(View v){

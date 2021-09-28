@@ -77,6 +77,7 @@ public class reclamosRecibidos extends AppCompatActivity {
                             Context contexto = null;
                             AdaptadorUbicacion ubis= new AdaptadorUbicacion( reclamosRecibidos.this,nuestrosReclamosRecibidos); //(this, android.R.layout.simple_list_item_1 , nuestrasubicaciones);
                             lista.setAdapter (ubis);
+                            ubis.pasardatos (deptoRecibido);
                         } else {
                             //MUESTRO ERROR
                         }
