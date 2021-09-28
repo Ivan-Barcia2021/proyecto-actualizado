@@ -46,7 +46,7 @@ public class misreclamos extends AppCompatActivity {
     String nombreusuariorecibido;
     ListView lista;
 
-
+String opcionseleccionada;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -79,30 +79,24 @@ public class misreclamos extends AppCompatActivity {
        FirebaseFirestore db = FirebaseFirestore.getInstance ();
 
        ArrayList<Ubicacion> nuestrasubicaciones = new ArrayList<> ();
+
        AlertDialog.Builder mensaje;
        mensaje = new AlertDialog.Builder (this);
        mensaje.setTitle ("Mis Reclamos");
        String[] opciones = {"Ver por departamento", "Ver desde mas recientes", "Ver desde mas antiguos"};
-       boolean[] opcionespreseleccionadas = {false, false, false};
-       DialogInterface.OnMultiChoiceClickListener escuchadorOpciones = null;
-       mensaje.setMultiChoiceItems (opciones, opcionespreseleccionadas, escuchadorOpciones);
-       DialogInterface.OnClickListener escuchador = null;
-       mensaje.setPositiveButton ("Aceptar", escuchador);
-       mensaje.create ();
-       mensaje.show ();
-       escuchador = new DialogInterface.OnClickListener () {
+       mensaje.setSingleChoiceItems (opciones, 0, new DialogInterface.OnClickListener () {
            @Override
            public void onClick(DialogInterface dialog, int which) {
-               Log.d ("Dialogo", "opciontocada" + which);
+               opcionseleccionada=opciones[which];
            }
-       };
-       escuchadorOpciones = new DialogInterface.OnMultiChoiceClickListener () {
+       });
+       mensaje.setPositiveButton ("Ver", new DialogInterface.OnClickListener () {
            @Override
-           public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-               Log.d ("Dialogo", "Toco - which" + which + "-b" + isChecked);
+           public void onClick(DialogInterface dialog, int which) {
+               dialog.dismiss ();
            }
-       };
-
+       });
+       mensaje.show ();
        bdd.collection ("Reclamos")
                //.whereEqualTo ("nombreUsuario", nombreusuariorecibido)
                .orderBy ("tipoDeReclamo", Query.Direction.ASCENDING)
