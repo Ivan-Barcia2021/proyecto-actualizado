@@ -25,13 +25,15 @@ class AdaptadorUbicacion  extends BaseAdapter {
     OnCompleteListener<QuerySnapshot> context;
 private Context micontexto;
 String departamento;
+int numero;
     AdaptadorUbicacion(Context context, ArrayList<Ubicacion> reclamosUB) {
         this.reclamosUB = reclamosUB;
         //this.context = context;
         this.micontexto=context;
     }
-public void pasardatos(String dpto){
+public void pasardatos(String dpto, int nro){
         departamento=dpto;
+        numero=nro;
 }
     @Override
     public int getCount() {
@@ -82,6 +84,7 @@ public void pasardatos(String dpto){
                 paquetedatos.putString("fecha", p.getFecha());
                 paquetedatos.putString("nombreReclamador", p.getnombreUsuario());
                 paquetedatos.putString ("Departamento", departamento);
+                paquetedatos.putInt ("numero", numero);
                 Intent intent= new Intent(v.getContext(), DescReclamos.class );
                 intent.putExtras(paquetedatos);
                 micontexto.startActivity(intent);

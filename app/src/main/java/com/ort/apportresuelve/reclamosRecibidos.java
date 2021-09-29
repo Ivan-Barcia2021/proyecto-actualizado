@@ -32,7 +32,7 @@ public class reclamosRecibidos extends AppCompatActivity {
     CollectionReference reclamos =bdd.collection("Reclamos");
     String deptoRecibido;
     String nombreusuariorecibido;
-
+int numero=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -71,7 +71,7 @@ public class reclamosRecibidos extends AppCompatActivity {
                             Context contexto = null;
                             AdaptadorUbicacion ubis= new AdaptadorUbicacion( reclamosRecibidos.this,nuestrosReclamosRecibidos); //(this, android.R.layout.simple_list_item_1 , nuestrasubicaciones);
                             lista.setAdapter (ubis);
-                            ubis.pasardatos (deptoRecibido);
+                            ubis.pasardatos (deptoRecibido, numero);
                         } else {
                             //MUESTRO ERROR
                         }

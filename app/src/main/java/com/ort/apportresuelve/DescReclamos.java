@@ -15,7 +15,7 @@ public class DescReclamos extends AppCompatActivity {
     String _descripcion, _edificio, _piso, _aula, _fecha, _nombreReclamador;
     Button enProceso, resuelto;
     String deptoRecibido;
-
+int numero;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -29,6 +29,7 @@ public class DescReclamos extends AppCompatActivity {
         _fecha=paqueterecibido.getString("fecha");
         _nombreReclamador=paqueterecibido.getString("nombreReclamador");
          deptoRecibido=paqueterecibido.getString ("Departamento");
+         numero=paqueterecibido.getInt ("numero");
         enProceso=findViewById(R.id.botonEnProceso);
         resuelto=findViewById(R.id.botonResuelto);
 
@@ -47,11 +48,16 @@ public class DescReclamos extends AppCompatActivity {
         aula.setText(_aula);
         fecha.setText(_fecha);
         nombreReclamador.setText(_nombreReclamador);
-
+ocultar ();
         //Bundle paqueteRecibidoDelDepto=this.getIntent ().getExtras ();
         //deptoRecibido = paqueteRecibidoDelDepto.getString ("Departamento");
     }
-
+public void ocultar(){
+        if(numero==0){
+           enProceso.setVisibility (View.INVISIBLE);
+           resuelto.setVisibility (View.INVISIBLE);
+        }
+}
     public void cambiar_estado_enProceso(View v){
         Bundle paqueteDepto= new Bundle();
         paqueteDepto.putString("Departamento", deptoRecibido);

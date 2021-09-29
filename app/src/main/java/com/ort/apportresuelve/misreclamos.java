@@ -48,6 +48,7 @@ public class misreclamos extends AppCompatActivity {
     Button miboton;
 String opcionseleccionada;
 int codigo;
+int numero=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -169,6 +170,7 @@ else{
                            Context contexto = null;
                            AdaptadorUbicacion ubis = new AdaptadorUbicacion (misreclamos.this, nuestrasubicaciones); //(this, android.R.layout.simple_list_item_1 , nuestrasubicaciones);
                            lista.setAdapter (ubis);
+                           ubis.pasardatos (deptoRecibido, numero);
                            //AdaptadorDetalles deta= new AdaptadorDetalles(misreclamos.this,nuestrasubicaciones);
 
                        } else {
