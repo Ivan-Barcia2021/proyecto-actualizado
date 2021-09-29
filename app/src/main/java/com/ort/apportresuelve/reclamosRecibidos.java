@@ -100,7 +100,7 @@ public class reclamosRecibidos extends AppCompatActivity {
         paquete.putString("cargo", "empleado");
         paquete.putString("Departamento", deptoRecibido);
         paquete.putString("NombreUsuario", nombreusuariorecibido);
-        Intent intent= new Intent (v.getContext (), misreclamos.class);
+        Intent intent= new Intent (v.getContext (), Filtro.class);
         intent.putExtras(paquete);
         startActivity (intent);
     }
