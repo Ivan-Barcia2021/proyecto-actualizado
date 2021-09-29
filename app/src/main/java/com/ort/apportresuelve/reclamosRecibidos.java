@@ -43,13 +43,7 @@ public class reclamosRecibidos extends AppCompatActivity {
 
         mostrar();
     }
-    public void pasar(View v){
-        Bundle paquete_nombre= new Bundle();
-        paquete_nombre.putString("nombre", nombreusuariorecibido);
-        Intent intent= new Intent (v.getContext (), login.class);
-        intent.putExtras(paquete_nombre);
-        startActivity (intent);
-    }
+
 
 
     public void mostrar(){

@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                                         paquete.putString("cargo", cargoUsuario);
                                         paquete.putString("Departamento", deptoUsuario);
                                         paquete.putString("NombreUsuario", nombreUsuario);
-                                        Intent intent= new Intent (v.getContext (), misreclamos.class);
+                                        Intent intent= new Intent (v.getContext (), Filtro.class);
                                         intent.putExtras(paquete);
                                         startActivity (intent);
                                     }

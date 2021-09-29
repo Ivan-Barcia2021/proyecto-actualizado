@@ -9,10 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.APPORTRESUELVE">
-        <activity android:name=".login"></activity>
+        <activity android:name=".Filtro"></activity>
+        <activity android:name=".login" />
         <activity android:name=".reclamosRecibidos" />
         <activity android:name=".misreclamos" />
-        <activity android:name=".DescReclamos"/>
+        <activity android:name=".DescReclamos" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

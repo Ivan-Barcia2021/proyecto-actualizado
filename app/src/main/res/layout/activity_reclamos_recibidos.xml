@@ -52,15 +52,7 @@
     android:layout_below="@+id/mlista"
     />
 
-<Button
-    android:id="@+id/botonRealizarNuevoReclamo"
-    android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:layout_below="@+id/seleccion2"
-    android:text="Realizar nuevo reclamo"
-    android:layout_centerHorizontal="true"
-    android:onClick="pasar"
-    />
+
 
 </RelativeLayout>
 
