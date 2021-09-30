@@ -45,6 +45,9 @@ public void pasardatos(String dpto, int nro ){
 public void pasarcodigo(int c, String d, ArrayList<String>m){
         codigo=c;
         descripcion=d;
+
+
+
     misdescripciones=m;
 }
     @Override
@@ -83,23 +86,28 @@ public void pasarcodigo(int c, String d, ArrayList<String>m){
         fechaAmostrar.setText(p.getFecha());
         String mi_descripcion=p.getDescripcion ();
         int posicion=0;
+        String desc=p.getDescripcion ();
+if(misdescripciones.size ()>0){
+    for(int i= 0; i<misdescripciones.size (); i++){
 
 
-
-        for(int i= 0; i<misdescripciones.size (); i++){
-
-                     if(mi_descripcion.equals (misdescripciones.get (i))){
-                         estado="En Proceso";
-
-                     }
-
-
-
-               miestado.setText (estado);
-
+        if (mi_descripcion.equals (misdescripciones.get (i))) {
+            estado = "En Proceso";
 
         }
 
+
+
+
+
+
+
+    }
+}
+
+        if(estado.equals ("En Proceso")){
+            miestado.setText (estado);
+        }
 
 
 
