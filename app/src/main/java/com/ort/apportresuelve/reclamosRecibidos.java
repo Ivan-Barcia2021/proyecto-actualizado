@@ -33,6 +33,7 @@ public class reclamosRecibidos extends AppCompatActivity {
     String deptoRecibido;
     String nombreusuariorecibido;
 int numero=1;
+int codigo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -40,7 +41,7 @@ int numero=1;
         Bundle paqueterecibido=this.getIntent ().getExtras ();
         deptoRecibido = paqueterecibido.getString ("Departamento");
         nombreusuariorecibido=paqueterecibido.getString("NombreUsuario");
-
+        codigo=paqueterecibido.getInt ("codigo");
         mostrar();
     }
 
@@ -72,6 +73,7 @@ int numero=1;
                             AdaptadorUbicacion ubis= new AdaptadorUbicacion( reclamosRecibidos.this,nuestrosReclamosRecibidos); //(this, android.R.layout.simple_list_item_1 , nuestrasubicaciones);
                             lista.setAdapter (ubis);
                             ubis.pasardatos (deptoRecibido, numero);
+                            ubis.pasarcodigo(codigo);
                         } else {
                             //MUESTRO ERROR
                         }

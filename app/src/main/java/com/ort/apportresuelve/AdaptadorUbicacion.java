@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +28,7 @@ class AdaptadorUbicacion  extends BaseAdapter {
 private Context micontexto;
 String departamento;
 int numero;
+int codigo;
     AdaptadorUbicacion(Context context, ArrayList<Ubicacion> reclamosUB) {
         this.reclamosUB = reclamosUB;
         //this.context = context;
@@ -34,6 +37,9 @@ int numero;
 public void pasardatos(String dpto, int nro){
         departamento=dpto;
         numero=nro;
+}
+public void pasarcodigo(int c){
+        codigo=c;
 }
     @Override
     public int getCount() {
@@ -65,10 +71,13 @@ public void pasardatos(String dpto, int nro){
 
         TextView tipoReclamoAmostrar = (TextView) view.findViewById(R.id.tipodeReclamoAmostrar);
         TextView fechaAmostrar = (TextView) view.findViewById(R.id.fechaAmostrar);
-
+        TextView miestado=(TextView) view.findViewById (R.id.miestado);
         Ubicacion p = reclamosUB.get(position);
         tipoReclamoAmostrar.setText(p.getTipoDeReclamo());
         fechaAmostrar.setText(p.getFecha());
+        if(codigo==1){
+            miestado.setText ("En Proceso");
+        }
 
         Log.d("TraerReclamo","CHAU");
 

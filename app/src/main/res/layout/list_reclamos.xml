@@ -35,16 +35,14 @@
                 android:textSize="25dp"
                 tools:text="Fecha" />
 
+            <TextView
+                android:id="@+id/miestado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="25dp"
+                android:text="No Atendido"/>
         </LinearLayout>
-
-        <Button
-            android:id="@+id/leido"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/boton_redondo"
-            app:backgroundTint="#DDC095" />
 
     </RelativeLayout>
 

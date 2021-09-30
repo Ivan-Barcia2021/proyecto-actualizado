@@ -16,6 +16,7 @@ public class DescReclamos extends AppCompatActivity {
     Button enProceso, resuelto;
     String deptoRecibido;
 int numero;
+int codigo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -59,7 +60,9 @@ public void ocultar(){
         }
 }
     public void cambiar_estado_enProceso(View v){
+        codigo=1;
         Bundle paqueteDepto= new Bundle();
+        paqueteDepto.putInt ("codigo", codigo);
         paqueteDepto.putString("Departamento", deptoRecibido);
         Intent intent= new Intent (v.getContext (), reclamosRecibidos.class);
         intent.putExtras(paqueteDepto);
