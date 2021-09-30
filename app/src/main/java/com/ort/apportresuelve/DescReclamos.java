@@ -64,6 +64,7 @@ public void ocultar(){
         Bundle paqueteDepto= new Bundle();
         paqueteDepto.putInt ("codigo", codigo);
         paqueteDepto.putString("Departamento", deptoRecibido);
+        paqueteDepto.putString ("descripcion", _descripcion);
         Intent intent= new Intent (v.getContext (), reclamosRecibidos.class);
         intent.putExtras(paqueteDepto);
         startActivity(intent);

@@ -34,6 +34,7 @@ public class reclamosRecibidos extends AppCompatActivity {
     String nombreusuariorecibido;
 int numero=1;
 int codigo;
+String descripcion;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -42,6 +43,8 @@ int codigo;
         deptoRecibido = paqueterecibido.getString ("Departamento");
         nombreusuariorecibido=paqueterecibido.getString("NombreUsuario");
         codigo=paqueterecibido.getInt ("codigo");
+        descripcion=paqueterecibido.getString ("descripcion");
+
         mostrar();
     }
 
@@ -72,8 +75,12 @@ int codigo;
                             Context contexto = null;
                             AdaptadorUbicacion ubis= new AdaptadorUbicacion( reclamosRecibidos.this,nuestrosReclamosRecibidos); //(this, android.R.layout.simple_list_item_1 , nuestrasubicaciones);
                             lista.setAdapter (ubis);
+                            ArrayList<String> misdescripciones= new ArrayList<> ();
+                            if(descripcion!=null){
+                                misdescripciones.add (descripcion);
+                            }
                             ubis.pasardatos (deptoRecibido, numero);
-                            ubis.pasarcodigo(codigo);
+                            ubis.pasarcodigo(codigo, descripcion, misdescripciones);
                         } else {
                             //MUESTRO ERROR
                         }

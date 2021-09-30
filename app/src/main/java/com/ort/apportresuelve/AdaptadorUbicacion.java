@@ -29,17 +29,23 @@ private Context micontexto;
 String departamento;
 int numero;
 int codigo;
+String descripcion;
+String estado="No atendido";
+ArrayList<String> misdescripciones;
     AdaptadorUbicacion(Context context, ArrayList<Ubicacion> reclamosUB) {
         this.reclamosUB = reclamosUB;
         //this.context = context;
         this.micontexto=context;
     }
-public void pasardatos(String dpto, int nro){
+public void pasardatos(String dpto, int nro ){
         departamento=dpto;
         numero=nro;
+
 }
-public void pasarcodigo(int c){
+public void pasarcodigo(int c, String d, ArrayList<String>m){
         codigo=c;
+        descripcion=d;
+    misdescripciones=m;
 }
     @Override
     public int getCount() {
@@ -75,9 +81,30 @@ public void pasarcodigo(int c){
         Ubicacion p = reclamosUB.get(position);
         tipoReclamoAmostrar.setText(p.getTipoDeReclamo());
         fechaAmostrar.setText(p.getFecha());
-        if(codigo==1){
-            miestado.setText ("En Proceso");
+        String mi_descripcion=p.getDescripcion ();
+        int posicion=0;
+
+
+
+        for(int i= 0; i<misdescripciones.size (); i++){
+
+                     if(mi_descripcion.equals (misdescripciones.get (i))){
+                         estado="En Proceso";
+
+                     }
+
+
+
+               miestado.setText (estado);
+
+
         }
+
+
+
+
+
+
 
         Log.d("TraerReclamo","CHAU");
 
