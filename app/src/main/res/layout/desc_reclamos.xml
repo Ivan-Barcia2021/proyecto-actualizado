@@ -102,6 +102,16 @@
         app:layout_constraintTop_toBottomOf="@id/aulaReclamo"
         tools:layout_editor_absoluteX="78dp"
         tools:layout_editor_absoluteY="330dp" />
+    <TextView
+        android:id="@+id/estado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="25dp"
+        app:layout_constraintTop_toBottomOf="@+id/aulaTraida"
+        tools:layout_editor_absoluteX="78dp"
+        tools:layout_editor_absoluteY="330dp"
+        />
 
     <Button
         android:id="@+id/botonEnProceso"
@@ -111,7 +121,7 @@
         android:text="En proceso"
         app:backgroundTint="#CAA409"
         android:onClick="cambiar_estado_enProceso"
-        app:layout_constraintTop_toBottomOf="@id/aulaTraida"
+        app:layout_constraintTop_toBottomOf="@id/estado"
         tools:layout_editor_absoluteX="65dp" />
 
     <Button
@@ -122,8 +132,9 @@
         android:layout_marginTop="48dp"
         android:text="Resuelto"
         app:backgroundTint="#1EAE0F"
+
         app:layout_constraintLeft_toRightOf="@+id/botonEnProceso"
-        app:layout_constraintTop_toBottomOf="@id/aulaTraida" />
+        app:layout_constraintTop_toBottomOf="@id/estado" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

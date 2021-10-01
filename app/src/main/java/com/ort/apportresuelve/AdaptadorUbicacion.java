@@ -30,6 +30,7 @@ String departamento;
 int numero;
 int codigo;
 String descripcion;
+ArrayList<String> misdescripciones2;
 String estado="No atendido";
 ArrayList<String> misdescripciones;
     AdaptadorUbicacion(Context context, ArrayList<Ubicacion> reclamosUB) {
@@ -42,10 +43,10 @@ public void pasardatos(String dpto, int nro ){
         numero=nro;
 
 }
-public void pasarcodigo(int c, String d, ArrayList<String>m){
+public void pasarcodigo(int c, String d, ArrayList<String>m, ArrayList<String>m2){
         codigo=c;
         descripcion=d;
-
+       misdescripciones2=m2;
 
 
     misdescripciones=m;
@@ -85,9 +86,25 @@ public void pasarcodigo(int c, String d, ArrayList<String>m){
         tipoReclamoAmostrar.setText(p.getTipoDeReclamo());
         fechaAmostrar.setText(p.getFecha());
         String mi_descripcion=p.getDescripcion ();
+        if(numero==0){
+            miestado.setText ("Ver reclamo");
+        }
+      /*  if(numero==0 && mi_descripcion.equals ("no anda el ascensor")){
+            miestado.setText ("En Proceso");
+        }
+        if(numero==0 && mi_descripcion.equals ("Se rompio una ventana")){
+            miestado.setText ("En Proceso");
+        }*/
         int posicion=0;
         String desc=p.getDescripcion ();
-if(misdescripciones.size ()>0){
+        if(misdescripciones2.size ()>0){
+            for(int i=0; i<misdescripciones2.size (); i++){
+                if(mi_descripcion.equals (misdescripciones2.get (i))){
+                    estado="Resuelto";
+                }
+            }
+        }
+else if(misdescripciones.size ()>0){
     for(int i= 0; i<misdescripciones.size (); i++){
 
 
@@ -105,8 +122,11 @@ if(misdescripciones.size ()>0){
     }
 }
 
+ if(estado.equals ("Resuelto")){
+    miestado.setText ("Resuelto");
+        }
         if(estado.equals ("En Proceso")){
-            miestado.setText (estado);
+            miestado.setText ("En Proceso");
         }
 
 

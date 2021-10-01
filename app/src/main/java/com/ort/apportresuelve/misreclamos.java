@@ -77,7 +77,11 @@ else{
     mostrar3 ();
         }
     }
+    public void ver_referencias(View v){
+        Intent i= new Intent (v.getContext (), referencias.class);
+        startActivity (i);
 
+    }
     public void pasar(View v){
         Bundle paquete_nombre= new Bundle();
         paquete_nombre.putString("nombre", nombreusuariorecibido);
@@ -114,6 +118,11 @@ else{
                            Context contexto = null;
                            AdaptadorUbicacion ubis = new AdaptadorUbicacion (misreclamos.this, nuestrasubicaciones); //(this, android.R.layout.simple_list_item_1 , nuestrasubicaciones);
                            lista.setAdapter (ubis);
+                           String descripcion=null;
+                           ArrayList<String> misdescripciones= new ArrayList<> ();
+                           ArrayList <String> misdescripciones2= new ArrayList<> ();
+                           ubis.pasardatos (deptoRecibido, numero);
+                           ubis.pasarcodigo (codigo, descripcion, misdescripciones, misdescripciones2);
                            //AdaptadorDetalles deta= new AdaptadorDetalles(misreclamos.this,nuestrasubicaciones);
 
                        } else {
@@ -170,7 +179,11 @@ else{
                            Context contexto = null;
                            AdaptadorUbicacion ubis = new AdaptadorUbicacion (misreclamos.this, nuestrasubicaciones); //(this, android.R.layout.simple_list_item_1 , nuestrasubicaciones);
                            lista.setAdapter (ubis);
+                           String descripcion=null;
+                           ArrayList<String> misdescripciones= new ArrayList<> ();
+                           ArrayList <String> misdescripciones2= new ArrayList<> ();
                            ubis.pasardatos (deptoRecibido, numero);
+                           ubis.pasarcodigo(codigo, descripcion, misdescripciones, misdescripciones2);
                            //AdaptadorDetalles deta= new AdaptadorDetalles(misreclamos.this,nuestrasubicaciones);
 
                        } else {
@@ -227,6 +240,12 @@ else{
                            Context contexto = null;
                            AdaptadorUbicacion ubis = new AdaptadorUbicacion (misreclamos.this, nuestrasubicaciones); //(this, android.R.layout.simple_list_item_1 , nuestrasubicaciones);
                            lista.setAdapter (ubis);
+                           String descripcion=null;
+                           ArrayList<String> misdescripciones= new ArrayList<> ();
+                           ArrayList <String> misdescripciones2= new ArrayList<> ();
+                           ubis.pasardatos (deptoRecibido, numero);
+
+                           ubis.pasarcodigo(codigo, descripcion, misdescripciones, misdescripciones2);
                            //AdaptadorDetalles deta= new AdaptadorDetalles(misreclamos.this,nuestrasubicaciones);
 
                        } else {

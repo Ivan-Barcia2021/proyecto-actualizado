@@ -22,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -49,11 +50,16 @@ String descripcion;
     }
 
 
+public void ver_referencias(View v){
+Intent i= new Intent (v.getContext (), referencias.class);
+startActivity (i);
 
+}
     public void mostrar(){
         ArrayList<Ubicacion> nuestrosReclamosRecibidos = new ArrayList<>();
 
         bdd.collection("Reclamos")
+
                 .whereEqualTo("tipoDeReclamo", deptoRecibido)
 
                 .get()
@@ -76,11 +82,15 @@ String descripcion;
                             AdaptadorUbicacion ubis= new AdaptadorUbicacion( reclamosRecibidos.this,nuestrosReclamosRecibidos); //(this, android.R.layout.simple_list_item_1 , nuestrasubicaciones);
                             lista.setAdapter (ubis);
                             ArrayList<String> misdescripciones= new ArrayList<> ();
-                            if(descripcion!=null){
+                            ArrayList<String> misdescripciones2= new ArrayList<> ();
+                            if(descripcion!=null && codigo==1){
                                 misdescripciones.add (descripcion);
                             }
+                            else if(descripcion!=null && codigo==2){
+                                misdescripciones2.add (descripcion);
+                            }
                             ubis.pasardatos (deptoRecibido, numero);
-                            ubis.pasarcodigo(codigo, descripcion, misdescripciones);
+                            ubis.pasarcodigo(codigo, descripcion, misdescripciones, misdescripciones2);
                         } else {
                             //MUESTRO ERROR
                         }

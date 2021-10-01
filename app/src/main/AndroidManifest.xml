@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.APPORTRESUELVE">
-        <activity android:name=".Filtro"></activity>
+        <activity android:name=".referencias"></activity>
+        <activity android:name=".Filtro" />
         <activity android:name=".login" />
         <activity android:name=".reclamosRecibidos" />
         <activity android:name=".misreclamos" />

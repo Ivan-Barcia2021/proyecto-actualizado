@@ -17,6 +17,7 @@ public class DescReclamos extends AppCompatActivity {
     String deptoRecibido;
 int numero;
 int codigo;
+TextView miestado;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -42,7 +43,7 @@ int codigo;
         aula=findViewById(R.id.aulaTraida);
         fecha=findViewById(R.id.fechaTraida);
         nombreReclamador=findViewById(R.id.nombreReclamador);
-
+        miestado=findViewById (R.id.estado);
         descripcion.setText(_descripcion);
         edificio.setText(_edificio);
         piso.setText(_piso);
@@ -50,6 +51,19 @@ int codigo;
         fecha.setText(_fecha);
         nombreReclamador.setText(_nombreReclamador);
 ocultar ();
+        if(numero==0 && _descripcion.equals ("no anda el ascensor")){
+            miestado.setText ("Estado: En Proceso");
+        }
+        else if(numero==0 && _descripcion.equals ("Se rompio una ventana")){
+            miestado.setText ("Estado: En Proceso");
+        }
+        else if(numero==0 && _descripcion.equals ("el aire acondicionado gotea")){
+            miestado.setText ("Estado: En Proceso");
+        }
+        else {
+            miestado.setText ("Estado: No atendido");
+        }
+
         //Bundle paqueteRecibidoDelDepto=this.getIntent ().getExtras ();
         //deptoRecibido = paqueteRecibidoDelDepto.getString ("Departamento");
     }
@@ -70,5 +84,14 @@ public void ocultar(){
         startActivity(intent);
     }
 
-
+  public void cambiar_estado_solucionado(View v){
+        codigo=2;
+      Bundle paqueteDepto= new Bundle();
+      paqueteDepto.putInt ("codigo", codigo);
+      paqueteDepto.putString("Departamento", deptoRecibido);
+      paqueteDepto.putString ("descripcion", _descripcion);
+      Intent intent= new Intent (v.getContext (), reclamosRecibidos.class);
+      intent.putExtras(paqueteDepto);
+      startActivity(intent);
+  }
 }

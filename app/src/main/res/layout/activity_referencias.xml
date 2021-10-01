@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/noatendido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:text="No atendido: El reclamo aun no ha sido observado por el personal a cargo"
+        />
+    <TextView
+        android:id="@+id/enproceso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+android:textSize="30dp"
+        android:text="En proceso: El reclamo esta siendo atendido por el personal a cargo"
+        />
+    <TextView
+        android:id="@+id/resuelto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:text="Resuelto: El personal a cargo ya resolvio su incidente"
+        />
+</LinearLayout>
+
