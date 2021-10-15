@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,9 +47,11 @@ public class misreclamos extends AppCompatActivity {
     String nombreusuariorecibido;
     ListView lista;
     Button miboton;
-String opcionseleccionada;
-int codigo;
-int numero=0;
+    ArrayList<String> spinnerFiltrar;
+    ArrayAdapter<String> Adaptador;
+    String filtroSeleccionado;
+    int numero=0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -57,8 +60,6 @@ int numero=0;
         Bundle paqueterecibido=this.getIntent ().getExtras ();
         cargoRecibido = paqueterecibido.getString ("cargo");
         nombreusuariorecibido=paqueterecibido.getString("NombreUsuario");
-        codigo=paqueterecibido.getInt ("codigo");
-        Bundle paqueteRecibidoDelDepto=this.getIntent ().getExtras ();
         deptoRecibido = paqueterecibido.getString ("Departamento");
 
         lista=findViewById (R.id.mlista);
@@ -66,15 +67,38 @@ int numero=0;
         ubicacionArrayList= GetArrayItems();*/
         ocultarBotonReclamosRecibidos (cargoRecibido);
 
-        if(codigo==0){
+
+        spinnerFiltrar = new ArrayList<> ();
+        spinnerFiltrar.add ("Departamento");
+        spinnerFiltrar.add ("Mas antiguos");
+        spinnerFiltrar.add ("Mas recientes");
+
+        Adaptador = new ArrayAdapter<String> (this, android.R.layout.simple_spinner_item, spinnerFiltrar);
+        Adaptador.setDropDownViewResource ((android.R.layout.simple_dropdown_item_1line));
+
+        Spinner spnOpciones = (Spinner) findViewById (R.id.filtrador);
+        spnOpciones.setAdapter (Adaptador);
+        spnOpciones.setOnItemSelectedListener (new AdapterView.OnItemSelectedListener () {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                filtroSeleccionado = spnOpciones.getItemAtPosition (position).toString ();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+        if(filtroSeleccionado.equals("Departamento")){
             mostrar();
         }
-
-else if(codigo==1){
-    mostrar2 ();
+        else if(filtroSeleccionado.equals("Mas antiguos")){
+            mostrar2 ();
         }
-else{
-    mostrar3 ();
+        else{
+            mostrar3 ();
         }
     }
     public void ver_referencias(View v){
@@ -118,11 +142,7 @@ else{
                            Context contexto = null;
                            AdaptadorUbicacion ubis = new AdaptadorUbicacion (misreclamos.this, nuestrasubicaciones); //(this, android.R.layout.simple_list_item_1 , nuestrasubicaciones);
                            lista.setAdapter (ubis);
-                           String descripcion=null;
-                           ArrayList<String> misdescripciones= new ArrayList<> ();
-                           ArrayList <String> misdescripciones2= new ArrayList<> ();
                            ubis.pasardatos (deptoRecibido, numero);
-                           ubis.pasarcodigo (codigo, descripcion, misdescripciones, misdescripciones2);
                            //AdaptadorDetalles deta= new AdaptadorDetalles(misreclamos.this,nuestrasubicaciones);
 
                        } else {
@@ -179,11 +199,7 @@ else{
                            Context contexto = null;
                            AdaptadorUbicacion ubis = new AdaptadorUbicacion (misreclamos.this, nuestrasubicaciones); //(this, android.R.layout.simple_list_item_1 , nuestrasubicaciones);
                            lista.setAdapter (ubis);
-                           String descripcion=null;
-                           ArrayList<String> misdescripciones= new ArrayList<> ();
-                           ArrayList <String> misdescripciones2= new ArrayList<> ();
                            ubis.pasardatos (deptoRecibido, numero);
-                           ubis.pasarcodigo(codigo, descripcion, misdescripciones, misdescripciones2);
                            //AdaptadorDetalles deta= new AdaptadorDetalles(misreclamos.this,nuestrasubicaciones);
 
                        } else {
@@ -240,12 +256,7 @@ else{
                            Context contexto = null;
                            AdaptadorUbicacion ubis = new AdaptadorUbicacion (misreclamos.this, nuestrasubicaciones); //(this, android.R.layout.simple_list_item_1 , nuestrasubicaciones);
                            lista.setAdapter (ubis);
-                           String descripcion=null;
-                           ArrayList<String> misdescripciones= new ArrayList<> ();
-                           ArrayList <String> misdescripciones2= new ArrayList<> ();
                            ubis.pasardatos (deptoRecibido, numero);
-
-                           ubis.pasarcodigo(codigo, descripcion, misdescripciones, misdescripciones2);
                            //AdaptadorDetalles deta= new AdaptadorDetalles(misreclamos.this,nuestrasubicaciones);
 
                        } else {

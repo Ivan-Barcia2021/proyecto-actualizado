@@ -132,7 +132,7 @@
         android:layout_marginTop="48dp"
         android:text="Resuelto"
         app:backgroundTint="#1EAE0F"
-
+        android:onClick="cambiar_estado_solucionado"
         app:layout_constraintLeft_toRightOf="@+id/botonEnProceso"
         app:layout_constraintTop_toBottomOf="@id/estado" />
 

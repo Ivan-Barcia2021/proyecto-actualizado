@@ -30,11 +30,26 @@
         android:text="Reclamos recibidos"
         app:backgroundTint="#3F51B5" />
 
-    <ListView
+        <TextView
+            android:id="@+id/textofiltrar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_below="@+id/MisReclamos"
+            android:text="Filtrar"/>
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_toRightOf="@+id/textofiltrar"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/MisReclamos"
+            android:id="@+id/filtrador" />
+
+        <ListView
         android:layout_width="match_parent"
         android:layout_height="550dp"
         android:id="@+id/mlista"
-        android:layout_below="@+id/MisReclamos"
+        android:layout_below="@+id/filtrador"
         />
 
     <Button

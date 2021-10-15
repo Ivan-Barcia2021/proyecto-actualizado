@@ -33,9 +33,8 @@ public class reclamosRecibidos extends AppCompatActivity {
     CollectionReference reclamos =bdd.collection("Reclamos");
     String deptoRecibido;
     String nombreusuariorecibido;
-int numero=1;
-int codigo;
-String descripcion;
+    int numero=1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -43,8 +42,6 @@ String descripcion;
         Bundle paqueterecibido=this.getIntent ().getExtras ();
         deptoRecibido = paqueterecibido.getString ("Departamento");
         nombreusuariorecibido=paqueterecibido.getString("NombreUsuario");
-        codigo=paqueterecibido.getInt ("codigo");
-        descripcion=paqueterecibido.getString ("descripcion");
 
         mostrar();
     }
@@ -73,53 +70,25 @@ startActivity (i);
 
 
                             }
-                            Log.d("TraerReclamosRecibidos","Recibido");
+                            Log.d("TraerReclamosRecibidos", "Recibido");
                             //for recorriendo nuestrasubicaciones para obtener todas las ubicaciones y mostrarlas en la list view con sus atributos.
-                            TextView miseleccion =findViewById (R.id.seleccion);
-                            ListView lista=findViewById (R.id.mlista);
+                            TextView miseleccion = findViewById(R.id.seleccion);
+                            ListView lista = findViewById(R.id.mlista);
 
                             Context contexto = null;
-                            AdaptadorUbicacion ubis= new AdaptadorUbicacion( reclamosRecibidos.this,nuestrosReclamosRecibidos); //(this, android.R.layout.simple_list_item_1 , nuestrasubicaciones);
-                            lista.setAdapter (ubis);
-                            ArrayList<String> misdescripciones= new ArrayList<> ();
-                            ArrayList<String> misdescripciones2= new ArrayList<> ();
-                            if(descripcion!=null && codigo==1){
-                                misdescripciones.add (descripcion);
-                            }
-                            else if(descripcion!=null && codigo==2){
-                                misdescripciones2.add (descripcion);
-                            }
-                            ubis.pasardatos (deptoRecibido, numero);
-                            ubis.pasarcodigo(codigo, descripcion, misdescripciones, misdescripciones2);
-                        } else {
-                            //MUESTRO ERROR
+                            AdaptadorUbicacion ubis = new AdaptadorUbicacion(reclamosRecibidos.this, nuestrosReclamosRecibidos); //(this, android.R.layout.simple_list_item_1 , nuestrasubicaciones);
+                            lista.setAdapter(ubis);
                         }
                     }
-                });
-/*
-        TextView seleccion=findViewById (R.id.seleccion);
-        TextView seleccion2=findViewById (R.id.seleccion2);
+                })
+    ;}
 
-        ArrayAdapter<Ubicacion> adaptador= new ArrayAdapter<Ubicacion> (this, android.R.layout.simple_list_item_1 , nuestrosReclamosRecibidos);
-        ListView milista=findViewById (R.id.mlista);
-        milista.setAdapter (adaptador);
-        milista.setOnItemClickListener (new AdapterView.OnItemClickListener () {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                seleccion.setText (parent.getItemAtPosition (position).toString ());
-                Log.d("EstoyTrayendo",seleccion.toString());
-
-
-            }
-        });
-*/
-    }
     public void ver_mis_reclamos(View v){
         Bundle paquete= new Bundle();
         paquete.putString("cargo", "empleado");
         paquete.putString("Departamento", deptoRecibido);
         paquete.putString("NombreUsuario", nombreusuariorecibido);
-        Intent intent= new Intent (v.getContext (), Filtro.class);
+        Intent intent= new Intent (v.getContext (), misreclamos.class);
         intent.putExtras(paquete);
         startActivity (intent);
     }
