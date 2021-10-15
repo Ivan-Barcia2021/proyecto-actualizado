@@ -60,6 +60,10 @@ public class DescReclamos extends AppCompatActivity {
             enProceso.setVisibility(View.INVISIBLE);
             resuelto.setVisibility(View.INVISIBLE);
         }
+        else{
+            enProceso.setVisibility(View.VISIBLE);
+            resuelto.setVisibility(View.VISIBLE);
+        }
     }
 
     public void cambiar_estado_enProceso(View v) {

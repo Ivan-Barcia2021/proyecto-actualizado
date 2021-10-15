@@ -53,10 +53,20 @@
     />
 
         <Button
-            android:id="@+id/referencias"
+            android:id="@+id/botonRealizarNuevoReclamo"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_below="@+id/mlista"
+            android:text="Realizar nuevo reclamo"
+            android:layout_centerHorizontal="true"
+            android:onClick="pasar"
+            />
+
+        <Button
+            android:id="@+id/referencias"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/botonRealizarNuevoReclamo"
             android:text="Ver referencias"
             android:layout_centerHorizontal="true"
             android:onClick="ver_referencias"

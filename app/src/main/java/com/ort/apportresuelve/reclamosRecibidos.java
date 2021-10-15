@@ -47,11 +47,20 @@ public class reclamosRecibidos extends AppCompatActivity {
     }
 
 
-public void ver_referencias(View v){
-Intent i= new Intent (v.getContext (), referencias.class);
-startActivity (i);
+    public void ver_referencias(View v){
+        Intent i= new Intent (v.getContext (), referencias.class);
+        startActivity (i);
 
-}
+    }
+
+    public void pasar(View v){
+        Bundle paquete_nombre= new Bundle();
+        paquete_nombre.putString("nombre", nombreusuariorecibido);
+        Intent intent= new Intent (v.getContext (), login.class);
+        intent.putExtras(paquete_nombre);
+        startActivity (intent);
+    }
+
     public void mostrar(){
         ArrayList<Ubicacion> nuestrosReclamosRecibidos = new ArrayList<>();
 
@@ -78,6 +87,7 @@ startActivity (i);
                             Context contexto = null;
                             AdaptadorUbicacion ubis = new AdaptadorUbicacion(reclamosRecibidos.this, nuestrosReclamosRecibidos); //(this, android.R.layout.simple_list_item_1 , nuestrasubicaciones);
                             lista.setAdapter(ubis);
+                            ubis.pasardatos (deptoRecibido, numero);
                         }
                     }
                 })

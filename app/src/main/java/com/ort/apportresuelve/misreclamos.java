@@ -46,7 +46,7 @@ public class misreclamos extends AppCompatActivity {
     String deptoRecibido;
     String nombreusuariorecibido;
     ListView lista;
-    Button miboton;
+    Button miboton, filtrarBoton;
     ArrayList<String> spinnerFiltrar;
     ArrayAdapter<String> Adaptador;
     String filtroSeleccionado;
@@ -57,14 +57,13 @@ public class misreclamos extends AppCompatActivity {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_misreclamos);
         reclamosRecibidosBtn=findViewById(R.id.reclamosRecibidosBoton);
+        filtrarBoton=findViewById(R.id.filtrarBoton);
         Bundle paqueterecibido=this.getIntent ().getExtras ();
         cargoRecibido = paqueterecibido.getString ("cargo");
         nombreusuariorecibido=paqueterecibido.getString("NombreUsuario");
         deptoRecibido = paqueterecibido.getString ("Departamento");
 
         lista=findViewById (R.id.mlista);
-        /*private ArrayList<Ubicacion> ubicacionArrayList;
-        ubicacionArrayList= GetArrayItems();*/
         ocultarBotonReclamosRecibidos (cargoRecibido);
 
 
@@ -90,16 +89,26 @@ public class misreclamos extends AppCompatActivity {
             }
         });
 
+        mostrar();
 
-        if(filtroSeleccionado.equals("Departamento")){
-            mostrar();
-        }
-        else if(filtroSeleccionado.equals("Mas antiguos")){
-            mostrar2 ();
-        }
-        else{
-            mostrar3 ();
-        }
+        filtrarBoton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {
+                if(filtroSeleccionado.equals("Departamento")){
+                    mostrar();
+                }
+                else if(filtroSeleccionado.equals("Mas antiguos")){
+                    mostrar2 ();
+                }
+                else if(filtroSeleccionado.equals("Mas recientes")){
+                    mostrar3 ();
+                }
+                else{
+                    mostrar();
+                }
+            }
+        });
+
     }
     public void ver_referencias(View v){
         Intent i= new Intent (v.getContext (), referencias.class);
@@ -176,8 +185,6 @@ public class misreclamos extends AppCompatActivity {
        FirebaseFirestore db = FirebaseFirestore.getInstance ();
 
        ArrayList<Ubicacion> nuestrasubicaciones = new ArrayList<> ();
-
-
 
        bdd.collection ("Reclamos")
                //.whereEqualTo ("nombreUsuario", nombreusuariorecibido)

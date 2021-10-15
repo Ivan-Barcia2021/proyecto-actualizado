@@ -35,21 +35,36 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20dp"
-            android:layout_below="@+id/MisReclamos"
-            android:text="Filtrar"/>
+            android:layout_below="@+id/reclamosRecibidosBoton"
+            android:text="Filtrar por"
+            android:padding="3dp"
+            />
 
         <Spinner
             android:layout_width="wrap_content"
             android:layout_toRightOf="@+id/textofiltrar"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/MisReclamos"
-            android:id="@+id/filtrador" />
+            android:layout_below="@+id/reclamosRecibidosBoton"
+            android:id="@+id/filtrador"
+            android:padding="4dp"
+            />
+
+        <Button
+            android:id="@+id/filtrarBoton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/reclamosRecibidosBoton"
+            android:text="Filtrar"
+            android:layout_toRightOf="@+id/filtrador"
+            android:onClick="pasar"
+            android:padding="4dp"
+            />
 
         <ListView
         android:layout_width="match_parent"
         android:layout_height="550dp"
         android:id="@+id/mlista"
-        android:layout_below="@+id/filtrador"
+        android:layout_below="@+id/filtrarBoton"
         />
 
     <Button
