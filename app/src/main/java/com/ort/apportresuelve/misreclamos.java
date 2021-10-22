@@ -118,6 +118,7 @@ public class misreclamos extends AppCompatActivity {
     public void pasar(View v){
         Bundle paquete_nombre= new Bundle();
         paquete_nombre.putString("nombre", nombreusuariorecibido);
+        paquete_nombre.putString("cargo", cargoRecibido);
         Intent intent= new Intent (v.getContext (), login.class);
         intent.putExtras(paquete_nombre);
         startActivity (intent);
@@ -142,6 +143,9 @@ public class misreclamos extends AppCompatActivity {
                            for (QueryDocumentSnapshot document : task.getResult ()) {
 
                                nuestrasubicaciones.add (document.toObject (Ubicacion.class));
+                               Ubicacion reclam = document.toObject(Ubicacion.class);
+                               reclam.setId(document.getId());
+                               nuestrasubicaciones.add(reclam);
 
                            }
                            Log.d ("TraerReclamo", "HOLA");

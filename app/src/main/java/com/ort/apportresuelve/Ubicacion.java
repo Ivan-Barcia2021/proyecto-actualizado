@@ -6,13 +6,31 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Ubicacion implements Serializable {
-    private  String descripcion;
+    private String id;
+    private String descripcion;
     private String edificio;
     private String piso;
     private String aula;
     private String tipoDeReclamo;
     private String fecha;
     private String nombreUsuario;
+    private String estadoDelReclamo;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getEstadoDelReclamo() {
+        return estadoDelReclamo;
+    }
+
+    public void setEstadoDelReclamo(String estadoDelReclamo) {
+        this.estadoDelReclamo = estadoDelReclamo;
+    }
 
     public String getnombreUsuario() {
         return nombreUsuario;

@@ -1,29 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_width="wrap_content"
+<RelativeLayout android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp">
 
     <TextView
-        android:id="@+id/noatendido"
+        android:id="@+id/tituloReferencias"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Referencias"
         android:textSize="30dp"
-        android:text="No atendido: El reclamo aun no ha sido observado por el personal a cargo"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
         />
+
+    <Button
+        android:id="@+id/referenciabotonNoatendido"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/tituloReferencias"
+        android:layout_marginTop="3dp"
+        android:background="@drawable/boton_redondo"
+        app:backgroundTint="#DDC095" />
+
     <TextView
-        android:id="@+id/enproceso"
+        android:id="@+id/textoTituloNoatendido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-android:textSize="30dp"
-        android:text="En proceso: El reclamo esta siendo atendido por el personal a cargo"
+        android:text="No atendido"
+        android:layout_marginLeft="8dp"
+        android:textSize="25dp"
+        android:layout_below="@+id/tituloReferencias"
+        android:layout_toRightOf="@+id/referenciabotonNoatendido"
         />
+
     <TextView
-        android:id="@+id/resuelto"
+        android:id="@+id/noatendidoDescripcion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:text="Resuelto: El personal a cargo ya resolvio su incidente"
+        android:textSize="20dp"
+        android:layout_marginLeft="8dp"
+        android:layout_below="@+id/textoTituloNoatendido"
+        android:layout_toRightOf="@+id/referenciabotonNoatendido"
+        android:text="El reclamo aun no ha sido observado por el personal a cargo"
         />
-</LinearLayout>
+
+
+
+
+    <Button
+        android:id="@+id/referenciaBotonEnproceso"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        app:backgroundTint="#CAA409"
+        android:background="@drawable/boton_redondo"
+        android:layout_below="@+id/noatendidoDescripcion"
+        />
+
+    <TextView
+        android:id="@+id/enProcesoDescripcion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_marginLeft="8dp"
+        android:layout_below="@+id/textoTituloEnProceso"
+        android:layout_toRightOf="@+id/referenciaBotonEnproceso"
+        android:text="El reclamo esta siendo atendido por el personal a cargo"
+        />
+
+
+    <TextView
+        android:id="@+id/textoTituloEnProceso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/noatendidoDescripcion"
+        android:layout_marginLeft="8dp"
+        android:layout_toRightOf="@+id/referenciaBotonEnproceso"
+        android:text="En proceso"
+        android:textSize="25dp" />
+
+    <Button
+        android:id="@+id/referenciaBotonResuelto"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        app:backgroundTint="#1EAE0F"
+        android:background="@drawable/boton_redondo"
+        android:layout_below="@+id/enProcesoDescripcion"
+        />
+
+    <TextView
+        android:id="@+id/textoTituloResuelto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Resuelto"
+        android:layout_marginLeft="8dp"
+        android:textSize="25dp"
+        android:layout_below="@+id/enProcesoDescripcion"
+        android:layout_toRightOf="@+id/referenciaBotonResuelto"
+        />
+
+    <TextView
+        android:id="@+id/resueltoDescripcion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_marginLeft="8dp"
+        android:layout_below="@+id/textoTituloResuelto"
+        android:layout_toRightOf="@+id/referenciaBotonResuelto"
+        android:text="El personal a cargo ya resolvio su incidente"
+        />
+
+</RelativeLayout>
 

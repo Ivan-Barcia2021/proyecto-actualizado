@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.APPORTRESUELVE">
         <activity android:name=".referencias"></activity>
-        <activity android:name=".Filtro" />
         <activity android:name=".login" />
         <activity android:name=".reclamosRecibidos" />
         <activity android:name=".misreclamos" />

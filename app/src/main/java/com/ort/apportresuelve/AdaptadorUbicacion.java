@@ -64,7 +64,6 @@ class AdaptadorUbicacion extends BaseAdapter {
             LayoutInflater inflater;
 
             inflater = (LayoutInflater) micontexto.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            //LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.list_reclamos, viewGroup, false);
         }
 
@@ -98,8 +97,10 @@ class AdaptadorUbicacion extends BaseAdapter {
                 paquetedatos.putString("tipoDeReclamo", p.getTipoDeReclamo());
                 paquetedatos.putString("fecha", p.getFecha());
                 paquetedatos.putString("nombreReclamador", p.getnombreUsuario());
+                paquetedatos.putString("estadoDelReclamo", p.getEstadoDelReclamo());
                 paquetedatos.putString("Departamento", departamento);
                 paquetedatos.putInt("numeroActivity", numero);
+                paquetedatos.putString("id", p.getId());
                 Intent intent = new Intent(v.getContext(), DescReclamos.class);
                 intent.putExtras(paquetedatos);
                 micontexto.startActivity(intent);
