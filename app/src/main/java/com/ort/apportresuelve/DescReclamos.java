@@ -57,13 +57,14 @@ public class DescReclamos extends AppCompatActivity {
         aula = findViewById(R.id.aulaTraida);
         fecha = findViewById(R.id.fechaTraida);
         nombreReclamador = findViewById(R.id.nombreReclamador);
-        miestado = findViewById(R.id.estado);
+        miestado = findViewById(R.id.reclamoTraido);
         descripcion.setText(_descripcion);
         edificio.setText(_edificio);
         piso.setText(_piso);
         aula.setText(_aula);
         fecha.setText(_fecha);
         nombreReclamador.setText(_nombreReclamador);
+        miestado.setText(_estadoDelReclamo);
 
         ocultar();
 

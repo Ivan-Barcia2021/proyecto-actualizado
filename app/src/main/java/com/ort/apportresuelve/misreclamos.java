@@ -127,10 +127,7 @@ public class misreclamos extends AppCompatActivity {
 
    public void mostrar() {
        FirebaseFirestore db = FirebaseFirestore.getInstance ();
-
        ArrayList<Ubicacion> nuestrasubicaciones = new ArrayList<> ();
-
-
 
        bdd.collection ("Reclamos")
                //.whereEqualTo ("nombreUsuario", nombreusuariorecibido)
@@ -143,9 +140,9 @@ public class misreclamos extends AppCompatActivity {
                            for (QueryDocumentSnapshot document : task.getResult ()) {
 
                                nuestrasubicaciones.add (document.toObject (Ubicacion.class));
-                               Ubicacion reclam = document.toObject(Ubicacion.class);
+                              /* Ubicacion reclam = document.toObject(Ubicacion.class);
                                //reclam.setId(document.getId());
-                               nuestrasubicaciones.add(reclam);
+                               nuestrasubicaciones.add(reclam);*/
 
                            }
                            Log.d ("TraerReclamo", "HOLA");

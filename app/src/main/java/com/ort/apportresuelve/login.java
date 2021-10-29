@@ -3,8 +3,10 @@ package com.ort.apportresuelve;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -131,40 +134,68 @@ public class login extends AppCompatActivity {
                 piso = textoSeleccionado2;
                 descripcion = mitexto.getText ().toString ();
 
-                Map<String, Object> registro = new HashMap<> ();
-                registro.put ("edificio", edificio);
-                registro.put ("piso", piso);
-                registro.put ("aula", aulaIngresada);
-                registro.put ("descripcion", descripcion);
-                registro.put("tipoDeReclamo", tipoDeReclamoSeleccionado);
-                registro.put("fecha", fechaFormat);
-                registro.put("nombreUsuario", nombreusuario);
-                registro.put("estadoDelReclamo", "No atendido");
-                db.collection ("Reclamos").add(registro).addOnSuccessListener (new OnSuccessListener<DocumentReference> () {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d("Reclamos", "se creo el reclamo" + documentReference.getId ());
-                    }
+                if(TextUtils.isEmpty(aulaIngresada)){
 
-                }).addOnFailureListener (new OnFailureListener () {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d("Reclamos", "NO se creo el reclamo"+ e);
-                    }
-                });
+                    Context context = getApplicationContext();
+                    CharSequence text = "Completa el aula/lugar";
+                    int duration = Toast.LENGTH_LONG;
 
-                Bundle paquete;
-                paquete = new Bundle ();
-                paquete.putString ("piso", piso);
-                paquete.putString ("edificio", edificio);
-                paquete.putString ("aulaIngresada", aulaIngresada);
-                paquete.putString ("descripcion", descripcion);
-                paquete.putString("tipoDeReclamo", tipoDeReclamoSeleccionado);
-                paquete.putString("fecha", (String) fechaFormat);
-                paquete.putString("nombreUsuario", nombreusuario);
-                paquete.putString("cargo", cargoRecibido);
-                Intent myIntent = new Intent (v.getContext (), misreclamos.class);
-                startActivity (myIntent);
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                }
+                else if(TextUtils.isEmpty(tipoDeReclamoSeleccionado)){
+                    Context context = getApplicationContext();
+                    CharSequence text = "Elige un tipo de reclamo";
+                    int duration = Toast.LENGTH_LONG;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                }
+                else if(TextUtils.isEmpty(descripcion)){
+                    Context context = getApplicationContext();
+                    CharSequence text = "Ingrese la descripcion del reclamo";
+                    int duration = Toast.LENGTH_LONG;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                }
+                else{
+                    Map<String, Object> registro = new HashMap<> ();
+                    registro.put ("edificio", edificio);
+                    registro.put ("piso", piso);
+                    registro.put ("aula", aulaIngresada);
+                    registro.put ("descripcion", descripcion);
+                    registro.put("tipoDeReclamo", tipoDeReclamoSeleccionado);
+                    registro.put("fecha", fechaFormat);
+                    registro.put("nombreUsuario", nombreusuario);
+                    registro.put("estadoDelReclamo", "No atendido");
+                    db.collection ("Reclamos").add(registro).addOnSuccessListener (new OnSuccessListener<DocumentReference> () {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            Log.d("Reclamos", "se creo el reclamo" + documentReference.getId ());
+                        }
+
+                    }).addOnFailureListener (new OnFailureListener () {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d("Reclamos", "NO se creo el reclamo"+ e);
+                        }
+                    });
+
+                    Bundle paquete;
+                    paquete = new Bundle ();
+                    paquete.putString ("piso", piso);
+                    paquete.putString ("edificio", edificio);
+                    paquete.putString ("aulaIngresada", aulaIngresada);
+                    paquete.putString ("descripcion", descripcion);
+                    paquete.putString("tipoDeReclamo", tipoDeReclamoSeleccionado);
+                    paquete.putString("fecha", (String) fechaFormat);
+                    paquete.putString("nombreUsuario", nombreusuario);
+                    paquete.putString("cargo", cargoRecibido);
+                    Intent myIntent = new Intent (v.getContext (), misreclamos.class);
+                    startActivity (myIntent);
+                }
+
             }
         });
     }

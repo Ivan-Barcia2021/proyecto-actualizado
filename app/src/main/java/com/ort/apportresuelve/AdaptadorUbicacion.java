@@ -75,7 +75,6 @@ class AdaptadorUbicacion extends BaseAdapter {
 
         TextView tipoReclamoAmostrar = (TextView) view.findViewById(R.id.tipodeReclamoAmostrar);
         TextView fechaAmostrar = (TextView) view.findViewById(R.id.fechaAmostrar);
-        TextView miestado = (TextView) view.findViewById(R.id.miestado);
         Button botonColorEstado = view.findViewById(R.id.botonEstado);
         Ubicacion p = reclamosUB.get(position);
         tipoReclamoAmostrar.setText(p.getTipoDeReclamo());
@@ -85,12 +84,10 @@ class AdaptadorUbicacion extends BaseAdapter {
 
 
         if (estado.equals("Resuelto")) {
-            miestado.setText("Resuelto");
             botonColorEstado.setBackgroundColor(Color.parseColor("#1EAE0F"));
             botonColorEstado.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#1EAE0F")));
         }
         else if (estado.equals("En Proceso")) {
-            miestado.setText("En Proceso");
             botonColorEstado.setBackgroundColor(Color.parseColor("#CAA409"));
             botonColorEstado.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#CAA409")));
         }

@@ -12,12 +12,6 @@
         android:layout_height="wrap_content"
         android:padding="5dp">
 
-        <LinearLayout
-            android:layout_width="330dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tipodeReclamoAmostrar"
@@ -32,27 +26,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed"
+                android:layout_below="@+id/tipodeReclamoAmostrar"
                 android:textSize="25dp"
                 tools:text="Fecha" />
 
-            <TextView
-                android:id="@+id/miestado"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-condensed"
-                android:textSize="25dp"
-                android:text="No Atendido"/>
-
-            <Button
-                android:id="@+id/botonEstado"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_below="@+id/miestado"
-                android:layout_marginTop="3dp"
-                android:background="@drawable/boton_redondo"
-
-                app:backgroundTint="#DDC095" />
-        </LinearLayout>
+        <Button
+            android:id="@+id/botonEstado"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/tipodeReclamoAmostrar"
+            android:layout_marginLeft="273dp"
+            android:layout_marginTop="-25dp"
+            android:layout_toRightOf="@+id/fechaAmostrar"
+            android:background="@drawable/boton_redondo"
+            app:backgroundTint="#DDC095" />
 
     </RelativeLayout>
 
