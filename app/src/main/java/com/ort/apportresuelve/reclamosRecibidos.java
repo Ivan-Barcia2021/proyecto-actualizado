@@ -76,7 +76,9 @@ public class reclamosRecibidos extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
 
-                                nuestrosReclamosRecibidos.add(document.toObject(Ubicacion.class));
+                                Ubicacion u = document.toObject(Ubicacion.class);
+                                u.setId(document.getId());
+                                nuestrosReclamosRecibidos.add(u);
 
 
                             }

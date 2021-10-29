@@ -144,7 +144,7 @@ public class misreclamos extends AppCompatActivity {
 
                                nuestrasubicaciones.add (document.toObject (Ubicacion.class));
                                Ubicacion reclam = document.toObject(Ubicacion.class);
-                               reclam.setId(document.getId());
+                               //reclam.setId(document.getId());
                                nuestrasubicaciones.add(reclam);
 
                            }

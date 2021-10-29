@@ -42,6 +42,16 @@
                 android:fontFamily="sans-serif-condensed"
                 android:textSize="25dp"
                 android:text="No Atendido"/>
+
+            <Button
+                android:id="@+id/botonEstado"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/miestado"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/boton_redondo"
+
+                app:backgroundTint="#DDC095" />
         </LinearLayout>
 
     </RelativeLayout>

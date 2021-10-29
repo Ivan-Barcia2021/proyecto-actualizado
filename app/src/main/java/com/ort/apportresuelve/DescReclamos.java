@@ -84,7 +84,7 @@ public class DescReclamos extends AppCompatActivity {
 
         db.collection("Reclamos")
                 .document(_id)
-                .set("En Proceso")
+                .update("estadoDelReclamo", "En Proceso")
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -108,6 +108,24 @@ public class DescReclamos extends AppCompatActivity {
     }
 
     public void cambiar_estado_solucionado(View v) {
+
+        db.collection("Reclamos")
+                .document(_id)
+                .update("estadoDelReclamo", "Resuelto")
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(getApplicationContext(), "Estado del reclamo modificado", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e("ActualizarReclamo", "Error al actualizar el estado del reclamo", e);
+                        Toast.makeText(getApplicationContext(), "Ocurrió un error al actualizar la información", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
         Bundle paqueteDepto = new Bundle();
         paqueteDepto.putString("Departamento", deptoRecibido);
         paqueteDepto.putString("descripcion", _descripcion);
