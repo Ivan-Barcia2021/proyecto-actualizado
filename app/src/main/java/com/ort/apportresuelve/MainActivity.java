@@ -53,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView (R.layout.activity_main);
         dniIngresadoUsuario=findViewById(R.id.usuario);
         contraseñaUsuario=findViewById(R.id.contraseña);
+        dniIngresadoUsuario.setText("23567877");
+        contraseñaUsuario.setText("qwerty");
 
     }
 

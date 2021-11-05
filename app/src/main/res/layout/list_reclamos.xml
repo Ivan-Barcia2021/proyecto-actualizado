@@ -39,7 +39,7 @@
             android:layout_marginTop="-29dp"
             android:layout_toRightOf="@+id/fechaAmostrar"
             android:background="@drawable/boton_redondo"
-            app:backgroundTint="#DDC095" />
+            app:backgroundTint="#CD2B2B" />
 
     </RelativeLayout>
 

@@ -23,7 +23,7 @@
         android:layout_below="@+id/tituloReferencias"
         android:layout_marginTop="3dp"
         android:background="@drawable/boton_redondo"
-        app:backgroundTint="#DDC095" />
+        app:backgroundTint="#CD2B2B" />
 
     <TextView
         android:id="@+id/textoTituloNoatendido"
