@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -82,13 +83,14 @@ class AdaptadorUbicacion extends BaseAdapter {
         estado = p.getEstadoDelReclamo();
 
 
-
         if (estado.equals("Resuelto")) {
             botonColorEstado.setBackgroundColor(Color.parseColor("#1EAE0F"));
+            botonColorEstado.setBackground(micontexto.getResources().getDrawable(R.drawable.boton_redondo));
             botonColorEstado.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#1EAE0F")));
         }
         else if (estado.equals("En Proceso")) {
             botonColorEstado.setBackgroundColor(Color.parseColor("#CAA409"));
+            botonColorEstado.setBackground(micontexto.getResources().getDrawable(R.drawable.boton_redondo));
             botonColorEstado.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#CAA409")));
         }
 

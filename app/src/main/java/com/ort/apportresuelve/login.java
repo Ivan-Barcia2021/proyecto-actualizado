@@ -54,7 +54,7 @@ public class login extends AppCompatActivity {
     EditText mitexto;
 
     String tipoDeReclamoSeleccionado;
-    Date d = new Date(); CharSequence fechaFormat = DateFormat.format("d/MM", d.getTime());
+    Date d = new Date(); CharSequence fechaFormat = DateFormat.format("yyyy-MM-dd", d.getTime());
 
 
     @Override
