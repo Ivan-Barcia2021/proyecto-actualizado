@@ -151,7 +151,11 @@ public class misreclamos extends AppCompatActivity {
                        if (task.isSuccessful ()) {
                            for (QueryDocumentSnapshot document : task.getResult ()) {
 
-                               nuestrasubicaciones.add (document.toObject (Ubicacion.class));
+                               Ubicacion u = document.toObject(Ubicacion.class);
+                               u.setId(document.getId());
+                               if(u.getnombreUsuario ().equals (nombreusuariorecibido)){
+                                   nuestrasubicaciones.add (u);
+                               }
                               /* Ubicacion reclam = document.toObject(Ubicacion.class);
                                //reclam.setId(document.getId());
                                nuestrasubicaciones.add(reclam);*/
@@ -208,8 +212,12 @@ public class misreclamos extends AppCompatActivity {
                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
                        if (task.isSuccessful ()) {
                            for (QueryDocumentSnapshot document : task.getResult ()) {
+                               Ubicacion u = document.toObject(Ubicacion.class);
+                               u.setId(document.getId());
+                               if(u.getnombreUsuario ().equals (nombreusuariorecibido)){
+                                   nuestrasubicaciones.add (u);
+                               }
 
-                               nuestrasubicaciones.add (document.toObject (Ubicacion.class));
 
                            }
                            Log.d ("TraerReclamo", "HOLA");
@@ -266,7 +274,11 @@ public class misreclamos extends AppCompatActivity {
                        if (task.isSuccessful ()) {
                            for (QueryDocumentSnapshot document : task.getResult ()) {
 
-                               nuestrasubicaciones.add (document.toObject (Ubicacion.class));
+                               Ubicacion u = document.toObject(Ubicacion.class);
+                               u.setId(document.getId());
+                               if(u.getnombreUsuario ().equals (nombreusuariorecibido)){
+                                   nuestrasubicaciones.add (u);
+                               }
 
                            }
                            Log.d ("TraerReclamo", "HOLA");
@@ -320,8 +332,11 @@ public class misreclamos extends AppCompatActivity {
                         if (task.isSuccessful ()) {
                             for (QueryDocumentSnapshot document : task.getResult ()) {
 
-                                nuestrasubicaciones.add (document.toObject (Ubicacion.class));
-
+                                Ubicacion u = document.toObject(Ubicacion.class);
+                                u.setId(document.getId());
+                                if(u.getnombreUsuario ().equals (nombreusuariorecibido)){
+                                    nuestrasubicaciones.add (u);
+                                }
                             }
                             Log.d ("TraerReclamo", "HOLA");
                             //for recorriendo nuestrasubicaciones para obtener todas las ubicaciones y mostrarlas en la list view con sus atributos.
@@ -374,7 +389,11 @@ public class misreclamos extends AppCompatActivity {
                         if (task.isSuccessful ()) {
                             for (QueryDocumentSnapshot document : task.getResult ()) {
 
-                                nuestrasubicaciones.add (document.toObject (Ubicacion.class));
+                                Ubicacion u = document.toObject(Ubicacion.class);
+                                u.setId(document.getId());
+                                if(u.getnombreUsuario ().equals (nombreusuariorecibido)){
+                                    nuestrasubicaciones.add (u);
+                                }
 
                             }
                             Log.d ("TraerReclamo", "HOLA");
@@ -428,8 +447,11 @@ public class misreclamos extends AppCompatActivity {
                         if (task.isSuccessful ()) {
                             for (QueryDocumentSnapshot document : task.getResult ()) {
 
-                                nuestrasubicaciones.add (document.toObject (Ubicacion.class));
-
+                                Ubicacion u = document.toObject(Ubicacion.class);
+                                u.setId(document.getId());
+                                if(u.getnombreUsuario ().equals (nombreusuariorecibido)){
+                                    nuestrasubicaciones.add (u);
+                                }
                             }
                             Log.d ("TraerReclamo", "HOLA");
                             //for recorriendo nuestrasubicaciones para obtener todas las ubicaciones y mostrarlas en la list view con sus atributos.

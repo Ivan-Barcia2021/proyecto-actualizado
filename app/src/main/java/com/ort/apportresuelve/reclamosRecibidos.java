@@ -159,8 +159,8 @@ public class reclamosRecibidos extends AppCompatActivity {
         ArrayList<Ubicacion> nuestrosReclamosRecibidos = new ArrayList<>();
 
         bdd.collection ("Reclamos")
-                .whereEqualTo("tipoDeReclamo", deptoRecibido)
-                .orderBy ("fecha", Query.Direction.ASCENDING)
+
+            .orderBy ("fecha", Query.Direction.ASCENDING)
                 .get ()
                 .addOnCompleteListener (new OnCompleteListener<QuerySnapshot> () {
                     @Override
@@ -170,9 +170,12 @@ public class reclamosRecibidos extends AppCompatActivity {
 
                                 Ubicacion u = document.toObject(Ubicacion.class);
                                 u.setId(document.getId());
-                                nuestrosReclamosRecibidos.add(u);
 
+                                if(u.getTipoDeReclamo ().equals (deptoRecibido)){
+                                    nuestrosReclamosRecibidos.add(u);
+                                }
                             }
+
                             Log.d ("TraerReclamo", "HOLA");
 
                             AdaptadorUbicacion ubis = new AdaptadorUbicacion (reclamosRecibidos.this, nuestrosReclamosRecibidos);
@@ -195,7 +198,7 @@ public class reclamosRecibidos extends AppCompatActivity {
         ArrayList<Ubicacion> nuestrosReclamosRecibidos = new ArrayList<>();
 
         bdd.collection ("Reclamos")
-                .whereEqualTo("tipoDeReclamo", deptoRecibido)
+            //    .whereEqualTo("tipoDeReclamo", deptoRecibido)
                 .orderBy ("fecha", Query.Direction.DESCENDING)
                 .get ()
                 .addOnCompleteListener (new OnCompleteListener<QuerySnapshot> () {
@@ -205,8 +208,11 @@ public class reclamosRecibidos extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : task.getResult ()) {
 
                                 Ubicacion u = document.toObject(Ubicacion.class);
-                                u.setId(document.getId());
-                                nuestrosReclamosRecibidos.add(u);
+                                u.setId (document.getId ());
+                                if(u.getTipoDeReclamo ().equals (deptoRecibido)){
+                                    nuestrosReclamosRecibidos.add(u);
+                                }
+
 
                             }
                             Log.d ("TraerReclamo", "HOLA");
